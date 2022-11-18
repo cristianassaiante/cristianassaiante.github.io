@@ -92,13 +92,6 @@ function openModal(event) {
     let filename = event.target.dataset.filename;
 
     filename = sanitize(filename);
-
-    modal.classList.remove('content__publist__modal__exit_delay');
-    modal.classList.remove('content__publist__modal__entry_delay');
-    
-    modal.classList.add('content__publist__modal__entry_delay');
-    modal.classList.add('content__publist__modal__show');
-
     current_filename = filename;
 
     (async () => {
@@ -106,6 +99,12 @@ function openModal(event) {
         content.innerText = text;
         content.style.whiteSpace = 'pre';
     })();
+
+    modal.classList.remove('content__publist__modal__exit_delay');
+    modal.classList.remove('content__publist__modal__entry_delay');
+    
+    modal.classList.add('content__publist__modal__entry_delay');
+    modal.classList.add('content__publist__modal__show');
 }
 
 function copyContent() {
