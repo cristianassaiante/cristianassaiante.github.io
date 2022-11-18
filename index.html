@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristian Assaiante</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        
+        <div id="tab_bar" class="tab-bar">
+            <a href="#profile" data-theme="1" class="tab-bar__item">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+            </a>
+            <a href="#biography" data-theme="2" class="tab-bar__item">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <circle cx="12" cy="10" r="3"></circle>
+                    <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
+                </svg>
+            </a>
+            <a href="#publications" data-theme="3" class="tab-bar__item">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-writing" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2z"></path>
+                    <path d="M16 7h4"></path>
+                    <path d="M18 19h-13a2 2 0 1 1 0 -4h4a2 2 0 1 0 0 -4h-3"></path>
+                </svg>
+            </a>
+            <a href="#projects" data-theme="4" class="tab-bar__item">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-source-code" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M14.5 4h2.5a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-5"></path>
+                    <path d="M6 5l-2 2l2 2"></path>
+                    <path d="M10 9l2 -2l-2 -2"></path>
+                </svg>
+            </a>
+            <div id="circle_indicator" class="tab-bar__circle_indicator"></div>
+        </div>
+
+        <div class="content">
+            <div id="profile" class="content__profile">
+                <figure class="content__profile__img">
+                    <img src="/static/img/profile.jpg" alt="...">
+                </figure>
+            
+                <div class="content__profile__desc">
+                    <h1>Cristian Assaiante</h1>
+                    <div>Ph.D. Student in Engineering in Computer Science</div>
+                    <a href="https://www.uniroma1.it/" target="_blank" rel="noopener noreferrer">Sapienza, University of Rome</a>
+                </div>
+            
+                <div class="content__profile__social">
+                    <a href="mailto:assaiante@diag.uniroma1.it" class="gmail" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-gmail" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M16 20h3a1 1 0 0 0 1 -1v-14a1 1 0 0 0 -1 -1h-3v16z"></path>
+                            <path d="M5 20h3v-16h-3a1 1 0 0 0 -1 1v14a1 1 0 0 0 1 1z"></path>
+                            <path d="M16 4l-4 4l-4 -4"></path>
+                            <path d="M4 6.5l8 7.5l8 -7.5"></path>
+                         </svg>
+                    </a>
+                    <a href="https://twitter.com/cristianrichi3" class="twitter" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/cristianassaiante" class="github" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+                        </svg>
+                    </a>
+                    <!-- <a href="#" class="scholar" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="0.5" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M 11 4 L 3 9 L 8.4921875 9 C 8.4715892 9.0754986 8.4383718 9.1441171 8.421875 9.2226562 C 8.375875 9.4646562 8.3398437 9.7308125 8.3398438 10.007812 C 8.3398438 13.578812 11.990234 13.175781 11.990234 13.175781 L 11.990234 14.085938 C 11.990234 14.454937 12.47425 14.327172 12.53125 15.076172 C 12.28925 15.076172 7.4746094 14.937547 7.4746094 18.185547 C 7.4746094 21.445547 11.724609 21.285156 11.724609 21.285156 C 11.724609 21.285156 16.632812 21.504656 16.632812 17.472656 C 16.634813 15.063656 13.822266 14.2795 13.822266 13.3125 C 13.822266 12.3335 15.941406 12.045906 15.941406 9.7539062 C 15.941406 8.7519062 15.872828 8.03825 15.423828 7.53125 C 15.388828 7.49625 15.366031 7.4722188 15.332031 7.4492188 C 15.324304 7.4420199 15.31448 7.4367774 15.306641 7.4296875 L 15.429688 7.4296875 L 17.5 5.8769531 L 17.5 8 A 0.50005 0.50005 0 0 0 17.511719 8.1152344 A 1.0001 1.0001 0 0 0 17 9 L 17 10 A 1.0001 1.0001 0 1 0 19 10 L 19 9 A 1.0001 1.0001 0 0 0 18.488281 8.1152344 A 0.50005 0.50005 0 0 0 18.5 8 L 18.5 5.125 L 20 4 L 11 4 z M 11.691406 7.0527344 C 11.979219 7.0397031 12.268922 7.109625 12.544922 7.265625 C 12.751922 7.369625 12.946141 7.518125 13.119141 7.703125 C 13.476141 8.060125 13.7765 8.5784531 13.9375 9.1894531 C 14.3175 10.640453 13.823828 12.035781 12.798828 12.300781 C 11.784828 12.587781 10.654672 11.641172 10.263672 10.201172 C 10.090672 9.4991719 10.114547 8.8202969 10.310547 8.2792969 C 10.312395 8.2723193 10.316443 8.2666961 10.318359 8.2597656 C 10.321722 8.2581149 10.32682 8.253536 10.330078 8.2519531 C 10.386262 8.0380596 10.478099 7.8461668 10.589844 7.6875 C 10.795388 7.3872165 11.066477 7.1838352 11.404297 7.09375 C 11.499297 7.07075 11.595469 7.0570781 11.691406 7.0527344 z M 12.082031 15.685547 C 13.775031 15.558547 15.216313 16.490813 15.320312 17.757812 C 15.390313 19.013813 14.087812 20.131094 12.382812 20.246094 C 10.689813 20.361094 9.2274844 19.441547 9.1464844 18.185547 C 9.0654844 16.918547 10.377031 15.812547 12.082031 15.685547 z"></path>
+                        </svg>
+                    </a> -->
+                    <a href="https://www.linkedin.com/in/cristian-assaiante-233032174/" class="linkedin" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                            <line x1="8" y1="11" x2="8" y2="16"></line>
+                            <line x1="8" y1="8" x2="8" y2="8.01"></line>
+                            <line x1="12" y1="16" x2="12" y2="11"></line>
+                            <path d="M16 16v-3a2 2 0 0 0 -4 0"></path>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/cristian.richie/" class="instagram" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <line x1="16.5" y1="7.5" x2="16.5" y2="7.501"></line>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/cristian.r.assaiante" class="facebook" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div id="biography" class="content__bio">
+                <div class="content__bio__text">
+                    <div class="content__bio__text__paragraph">
+                    <h1>Biography</h1>
+                    <p>I am a <a href="https://phd.uniroma1.it/web/CRISTIAN-ASSAIANTE_nP1744195_.aspx" target="_blank" rel="noopener noreferrer">Ph.D. Student</a> with the Department of Computer, Control and Management Engineering (DIAG) "Antonio Ruberti" at Sapienza University of Rome. I am currently working with the research group of my advisor Prof. <a href="https://sites.google.com/diag.uniroma1.it/querzoni" target="_blank" rel="noopener noreferrer">Leonardo Querzoni</a> and my co-advisor Dr. <a href="http://www.diag.uniroma1.it//~delia/" target="_blank" rel="noopener noreferrer">Daniele Cono D'Elia</a>.</p>    
+                    <p>My research interests spans over several aspects of software and system security, the main focus at the moment is <i>software testing</i>. So far, my works are about bug finding in compiler infrastructures caused by optimizations pressure over software debuggability. I am passionate about compilers optimizations, program analysis techniques (sometimes applied to malware analysis), operating systems and micro-architectural attacks.</p>
+                    <p>I obtained my M.Sc. degree (<i>summa cum laude</i>) with a thesis about the completeness of debug symbols in optimizing compilers, and my B.Sc. degree (<i>summa cum laude</i>) with a thesis about a micro-architectural approach to malware evasion techniques (<a href="https://tesi.clusit.it/vincitori.php" target="_blank" rel="noopener noreferrer">Winner</a> of the CLUSIT prize for the <i>most innovative cybersecurity thesis</i>, 2019).</p>
+                    <p>Since 2020, I am one of the <i>organizers</i> and <i>training coordinators</i> for the <a href="https://cyberchallenge.it/" target="_blank" rel="noopener noreferrer">CyberChallenge.IT</a> introductory program in cybersecurity, at Sapienza University of Rome. During the course I give lectures, both practical and theoretical, about various cybersecurity topics (cryptography, reverse engineering, binary exploitation and micro-architectural attacks). In 2022, the Sapienza team reached the 5<sup>th</sup> place at the national finals, in Turin, Italy.</p>
+                    <p>An updated and complete version of my CV can be found <a href="/data/assaiante-cv.pdf" target="_blank" rel="noopener noreferrer">here</a>.</p>
+                    </div>
+
+                    <div class="content__bio__text__paragraph">
+                    <h2> Service</h2>
+                    <dl>
+                        <dt>2023</dt>
+                            <dd>Shadow Program Committee member for <a href="https://2023.eurosys.org/" target="_blank" rel="noopener noreferrer">EuroSys'23</a> - 18<sup>th</sup> European Conference on Computer Systems</dd>
+                            <dd>Artifact Evaluation Committee member for <a href="https://2023.eurosys.org/" target="_blank" rel="noopener noreferrer">EuroSys'23</a> - 18<sup>th</sup> European Conference on Computer Systems</dd>
+                    </dl>
+                    </div>
+                    
+                    <div class="content__bio__text__paragraph">
+                    <h2>Teaching</h2>
+                    <dl>
+                        <dt>2022</dt>
+                            <dd>Teaching Assistant for <a href="https://season-lab.github.io/SC/" target="_blank" rel="noopener noreferrer">Sistemi di Calcolo</a> course (Spring 2022), Sapienza University of Rome</dd>
+                    </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div id="publications" class="content__publist">
+                <h1>Publications</h1>
+
+                <!-- HERE'S AN EXAMPLE OF HOW TO CONSTRUCT HTML DIV FOR PUBLICATIONS ENTRY -->
+                <div class="content__publist__paper">
+                    <div class="content__publist__paper__title">Where Did My Variable Go? Poking Holes in Incomplete Debug Information</div>
+                    <div class="content__publist__paper__authors"><b>C. Assaiante</b>, D .C. D'Elia, G. A. Di Luna, L. Querzoni, <b>2023</b></div>
+                    <div class="content__publist__paper__text">To appear in Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (<a href="https://asplos-conference.org/" target="_blank" rel="noopener noreferrer">ASPLOS '23</a>)</div>
+                    <div class="content__publist__paper__rank">CORE21 rank: A*</div>
+                    <div class="content__publist__paper__abstract" style="display: none;">
+                        <p>The availability of debug information for optimized executables can largely ease crucial tasks such as crash analysis. Source-level debuggers use this information to display program state in terms of source code, allowing users to reason on it even when optimizations alter program structure extensively. A few recent endeavors have proposed effective methodologies for identifying incorrect instances of debug information, which can mislead users by presenting them with an inconsistent program state.</p>
+                        <p>In this work, we identify and study a related important problem: the completeness of debug information. Unlike correctness issues for which an unoptimized executable can serve as reference, we find there is no analogous oracle to deem when the cause behind an unreported part of program state is an unavoidable effect of optimization or a compiler implementation defect. In this scenario, we argue that empirically derived conjectures on the expected availability of debug information can serve as an effective means to expose classes of these defects.</p>
+                        <p>We propose three conjectures involving variable values and study how often synthetic programs compiled with different configurations of the popular gcc and LLVM compilers deviate from them. We then discuss techniques to pinpoint the optimizations behind such violations and minimize bug reports accordingly. Our experiments revealed, among others, 24 bugs already confirmed by the developers of the gcc-gdb and clang-lldb ecosystems.</p>
+                    </div>
+                    <div class="content__publist__paper__links">
+                        <a href="javascript:void(0)" onclick="invertAbstract(event)">abstract</a>
+                        <!-- <a href="#" target="_blank" rel="noopener noreferrer">doi</a> -->
+                        <a href="https://arxiv.org/abs/2211.09568" target="_blank" rel="noopener noreferrer">arxiv</a>
+                        <a data-filename="data/bibtex/asplos23.bib" href="javascript:void(0)" onclick="openModal(event)">cite</a>
+                    </div>
+                </div>
+
+                <div id="modal" class="content__publist__modal">
+                    <div class="content__publist__modal__content">
+                        <div class="content__publist__modal__content__header">
+                            <h2>Cite</h2>
+                            <button id="modal_close" class="content__publist__modal__content__header__close">&times;</button>
+                        </div>
+                        <div id="modal_content" class="content__publist__modal__content__bib"></div>
+                        <div class="content__publist__modal__content__footer">
+                            <button id="modal_copy" onclick="copyContent()" class="content__publist__modal__content__footer__copy">Copy</button>
+                            <button id="modal_download" onclick="downloadContent()" class="content__publist__modal__content__footer__download">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="projects" class="content__code">
+                <h1>Projects</h1>
+                
+                <div class="content__code__projects">
+                    <!-- HERE'S AN EXAMPLE OF HOW TO CONSTRUCT HTML DIV FOR PROJECTS ENTRY -->
+                    <div class="content__code__projects__project">
+                        <div class="content__code__projects__project__img">
+                            <img src="/data/projects/incomplete-debuginfo/logo.png" alt="...">
+                        </div>
+                        <div class="content__code__projects__project__title">
+                            Incomplete Debug Information
+                        </div>
+                        <div class="content__code__projects__project__text">
+                            A framework for testing compiler toolchains for <i>completeness bugs</i> in debug information.
+                        </div>
+                        <div class="content__code__projects__project__links">
+                            <a href="https://github.com/cristianassaiante/incomplete-debuginfo" target="_blank" rel="noopener noreferrer">code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M14 9.75a3.016 3.016 0 0 0 -4.163 .173a2.993 2.993 0 0 0 0 4.154a3.016 3.016 0 0 0 4.163 .173"></path>
+        </svg>
+        <span>Cristian Assaiante, 2022</span></div>
+        <div>(feel free to use this template for your own websites)
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-smile-beam" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 21a9 9 0 1 1 0 -18a9 9 0 0 1 0 18z"></path>
+                <path d="M10 10c-.5 -1 -2.5 -1 -3 0"></path>
+                <path d="M17 10c-.5 -1 -2.5 -1 -3 0"></path>
+                <path d="M14.5 15a3.5 3.5 0 0 1 -5 0"></path>
+            </svg>
+        </div>
+    </div>
+
+    <script src="static/js/app.js"></script>
+</body>
+</html>
