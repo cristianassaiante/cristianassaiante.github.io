@@ -254,6 +254,7 @@ body {
   font-weight: 400;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 .content__bio__text div dl dd {
   font-weight: 300;
@@ -446,7 +447,6 @@ body {
   padding: 1rem;
   box-shadow: 0 20px 40px -20px var(--theme-0);
   border-radius: 1rem;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
