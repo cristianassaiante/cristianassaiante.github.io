@@ -30,6 +30,13 @@ sup {
   font-size: 0.7rem;
 }
 
+sub {
+  vertical-align: baseline;
+  position: relative;
+  top: 0.4rem;
+  font-size: 0.7rem;
+}
+
 i {
   font-style: italic;
   font-weight: 500;
@@ -293,6 +300,7 @@ body {
 }
 .content__publist__paper__title {
   font-style: italic;
+  font-weight: bold;
   font-size: 1.1rem;
 }
 .content__publist__paper__authors {
