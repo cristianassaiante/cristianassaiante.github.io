@@ -98,13 +98,13 @@ function openModal(event) {
         const text = await (await fetch(filename)).text();
         content.innerText = text;
         content.style.whiteSpace = 'pre';
+        
+        modal.classList.remove('content__publist__modal__exit_delay');
+        modal.classList.remove('content__publist__modal__entry_delay');
+        
+        modal.classList.add('content__publist__modal__entry_delay');
+        modal.classList.add('content__publist__modal__show');
     })();
-
-    modal.classList.remove('content__publist__modal__exit_delay');
-    modal.classList.remove('content__publist__modal__entry_delay');
-    
-    modal.classList.add('content__publist__modal__entry_delay');
-    modal.classList.add('content__publist__modal__show');
 }
 
 function copyContent() {
