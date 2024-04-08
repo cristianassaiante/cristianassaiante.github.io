@@ -163,7 +163,7 @@
                     <div class="content__publist__paper__title">Where Did My Variable Go? Poking Holes in Incomplete Debug Information</div>
                     <div class="content__publist__paper__authors"><b>C. Assaiante</b>, D .C. D'Elia, G. A. Di Luna, L. Querzoni, <b>2023</b></div>
                     <div class="content__publist__paper__text">In Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (<a href="https://asplos-conference.org/" target="_blank" rel="noopener noreferrer">ASPLOS '23</a>)</div>
-                    <div class="content__publist__paper__rank">CORE21 rank: A*</div>
+                    <div class="content__publist__paper__rank">CORE23 rank: A*</div>
                     <div class="content__publist__paper__abstract" style="display: none;">
                         <p>The availability of debug information for optimized executables can largely ease crucial tasks such as crash analysis. Source-level debuggers use this information to display program state in terms of source code, allowing users to reason on it even when optimizations alter program structure extensively. A few recent endeavors have proposed effective methodologies for identifying incorrect instances of debug information, which can mislead users by presenting them with an inconsistent program state.</p>
                         <p>In this work, we identify and study a related important problem: the completeness of debug information. Unlike correctness issues for which an unoptimized executable can serve as reference, we find there is no analogous oracle to deem when the cause behind an unreported part of program state is an unavoidable effect of optimization or a compiler implementation defect. In this scenario, we argue that empirically derived conjectures on the expected availability of debug information can serve as an effective means to expose classes of these defects.</p>
@@ -175,6 +175,25 @@
                         <a href="https://arxiv.org/abs/2211.09568" target="_blank" rel="noopener noreferrer">preprint</a>
                         <a href="https://www.youtube.com/watch?v=5Y43purMfig&t=1s&ab_channel=ACMSIGARCH" target="_blank" rel="noopener noreferrer">talk</a>
                         <a data-filename="data/bibtex/asplos23.bib" href="javascript:void(0)" onclick="openModal(event)">cite</a>
+                    </div>
+                </div>
+
+                <div class="content__publist__paper">
+                    <div class="content__publist__paper__title">Evading Userland API Hooking, Again: Novel Attacks and a Principled Defense Method</div>
+                    <div class="content__publist__paper__authors"><b>C. Assaiante</b>, S. Nicchi, D .C. D'Elia, L. Querzoni, <b>2024</b></div>
+                    <div class="content__publist__paper__text">To appear in Proceedings of the 21st Conference on Detection of Intrusions and Malware & Vulnerability Assessment (<a href="https://dimva.org/dimva2024" target="_blank" rel="noopener noreferrer">DIMVA '24</a>)</div>
+                    <div class="content__publist__paper__rank">CORE23 rank: C</div>
+                    <div class="content__publist__paper__abstract" style="display: none;">
+                        <p>Monitoring how a program utilizes userland APIs is behind much dependability and security research. To intercept and study their invocations, the established practice targets the prologue of API implementations for inserting hooks.</p>
+                        <p>This paper questions the validity of this design for security uses by examining completeness and correctness attacks to it. We first show how evasions that jump across the hook instrumentation are practical and can reach places much deeper than those we currently find in executables in the wild. Next, we propose and demonstrate TOCTTOU attacks that lead monitoring systems to observe false indicators for the argument values that a program uses for API calls.</p>    
+                        <p>To mitigate both threats, we design a static analysis to identify vantage points for effective hook placement in API code, supporting both reliable call recording and accurate argument extraction. We use this analysis to implement an open-source prototype API monitor, Toxotidae, that we evaluate against adversarial and benign executables for Windows.</p>
+                    </div>
+                    <div class="content__publist__paper__links">
+                        <a href="javascript:void(0)" onclick="invertAbstract(event)">abstract</a>
+                        <!-- <a href="#" target="_blank" rel="noopener noreferrer">doi</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">preprint</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">talk</a>
+                        <a data-filename="#" href="javascript:void(0)" onclick="openModal(event)">cite</a> -->
                     </div>
                 </div>
 
