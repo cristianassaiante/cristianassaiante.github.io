@@ -455,8 +455,7 @@ body {
   padding: 1rem;
   box-shadow: 0 20px 40px -20px var(--theme-0);
   border-radius: 1rem;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 30em;
 }
 .content__code__projects__project__title {
   font-size: 1.3rem;
@@ -469,7 +468,7 @@ body {
   text-align: center;
 }
 .content__code__projects__project__img {
-  max-width: 20vh;
+  max-width: 15vh;
 }
 .content__code__projects__project__img img {
   border-radius: 1rem;
