@@ -24,7 +24,7 @@ function isInViewport(el) {
     return (
         rect.top >= 0 &&
         rect.left >= 0 &&
-        rect.top <= window.innerHeight * 0.3 // -> percentage of page left before switching
+        rect.top <= window.innerHeight * 0.4 // -> percentage of page left before switching
     )
 }
 
