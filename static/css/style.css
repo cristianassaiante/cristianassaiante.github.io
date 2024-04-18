@@ -474,6 +474,9 @@ body {
 .content__code__projects__project__img img {
   border-radius: 1rem;
 }
+.content__code__projects__project__img img:hover {
+  transform: scale(1.2);
+}
 .content__code__projects__project__links {
   display: flex;
   flex-direction: row;

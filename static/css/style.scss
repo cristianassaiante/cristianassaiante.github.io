@@ -532,6 +532,10 @@ body {
                     & img {
                         border-radius: 1rem;
                     }
+
+                    & img:hover {
+                        transform: scale(1.2);
+                    }
                 }
 
                 &__links {
