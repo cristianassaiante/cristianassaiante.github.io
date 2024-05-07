@@ -3,12 +3,17 @@
 	<url>
 		<loc>https://www.cristianassaiante.github.io</loc>
 		<priority>1.00</priority>
-		<lastmod>2024-04-18</lastmod>
+		<lastmod>2024-05-07</lastmod>
 	</url>
 	<url>
 		<loc>https://www.cristianassaiante.github.io/data/assaiante-cv.pdf</loc>
 		<priority>0.50</priority>
 		<lastmod>2024-04-17</lastmod>
+	</url>
+	<url>
+		<loc>https://www.cristianassaiante.github.io/data/papers/dimva24.pdf</loc>
+		<priority>0.25</priority>
+		<lastmod>2024-04-30</lastmod>
 	</url>
 	<url>
 		<loc>https://www.cristianassaiante.github.io/data/papers/asplos23-full.pdf</loc>
