@@ -113,6 +113,7 @@
                         <dt>2025</dt>
                             <dd>Artifact Evaluation Committee member for <a href="https://www.sigsac.org/ccs/CCS2025/" target="_blank" rel="noopener noreferrer">ACM CCS'25</a> - ACM Conference on Computer and Communications Security <small>[CORE23 rank: A*]</small></dd>
                             <dd>Artifact Evaluation Committee member for <a href="https://www.usenix.org/conference/usenixsecurity25" target="_blank" rel="noopener noreferrer">USENIX Security'25</a> - 34° USENIX Security Symposium <small>[CORE23 rank: A*]</small></dd>
+                            <dd>Artifact Evaluation Committee member for <a href="https://www.ndss-symposium.org/ndss2026/" target="_blank" rel="noopener noreferrer">NDSS'26</a> - Network and Distributed System Security Symposium 2026 <small>[CORE23 rank: A*]</small></dd>
                         <dt>2024</dt>
                             <dd>Artifact Evaluation Committee member for <a href="https://www.ndss-symposium.org/ndss2025/" target="_blank" rel="noopener noreferrer">NDSS'25</a> - Network and Distributed System Security Symposium 2025 <small>[CORE23 rank: A*]</small></dd>
                         <dt>2023</dt>
@@ -145,25 +146,6 @@
 
                 <!-- HERE'S AN EXAMPLE OF HOW TO CONSTRUCT HTML DIV FOR PUBLICATIONS ENTRY -->
                 <div class="content__publist__paper">
-                    <div class="content__publist__paper__title">Where Did My Variable Go? Poking Holes in Incomplete Debug Information</div>
-                    <div class="content__publist__paper__authors"><b>C. Assaiante</b>, D. C. D'Elia, G. A. Di Luna, L. Querzoni, <b>2023</b></div>
-                    <div class="content__publist__paper__text">In Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (<a href="https://www.asplos-conference.org/asplos2023/" target="_blank" rel="noopener noreferrer">ASPLOS '23</a>)</div>
-                    <div class="content__publist__paper__rank">CORE23 rank: A*</div>
-                    <div class="content__publist__paper__abstract" style="display: none;">
-                        <p>The availability of debug information for optimized executables can largely ease crucial tasks such as crash analysis. Source-level debuggers use this information to display program state in terms of source code, allowing users to reason on it even when optimizations alter program structure extensively. A few recent endeavors have proposed effective methodologies for identifying incorrect instances of debug information, which can mislead users by presenting them with an inconsistent program state.</p>
-                        <p>In this work, we identify and study a related important problem: the completeness of debug information. Unlike correctness issues for which an unoptimized executable can serve as reference, we find there is no analogous oracle to deem when the cause behind an unreported part of program state is an unavoidable effect of optimization or a compiler implementation defect. In this scenario, we argue that empirically derived conjectures on the expected availability of debug information can serve as an effective means to expose classes of these defects.</p>
-                        <p>We propose three conjectures involving variable values and study how often synthetic programs compiled with different configurations of the popular gcc and LLVM compilers deviate from them. We then discuss techniques to pinpoint the optimizations behind such violations and minimize bug reports accordingly. Our experiments revealed, among others, 24 bugs already confirmed by the developers of the gcc-gdb and clang-lldb ecosystems.</p>
-                    </div>
-                    <div class="content__publist__paper__links">
-                        <a href="javascript:void(0)" onclick="invertAbstract(event)">abstract</a>
-                        <a href="https://dl.acm.org/doi/10.1145/3575693.3575720" target="_blank" rel="noopener noreferrer">doi</a>
-                        <a href="/data/papers/asplos23-full.pdf" target="_blank" rel="noopener noreferrer">extended</a>
-                        <a href="https://www.youtube.com/watch?v=5Y43purMfig&t=1s&ab_channel=ACMSIGARCH" target="_blank" rel="noopener noreferrer">talk</a>
-                        <a data-filename="data/bibtex/asplos23.bib" href="javascript:void(0)" onclick="openModal(event)">cite</a>
-                    </div>
-                </div>
-
-                <div class="content__publist__paper">
                     <div class="content__publist__paper__title">Evading Userland API Hooking, Again: Novel Attacks and a Principled Defense Method</div>
                     <div class="content__publist__paper__authors"><b>C. Assaiante</b>, S. Nicchi, D. C. D'Elia, L. Querzoni, <b>2024</b></div>
                     <div class="content__publist__paper__text">To appear in Proceedings of the 21st Conference on Detection of Intrusions and Malware & Vulnerability Assessment (<a href="https://dimva.org/dimva2024" target="_blank" rel="noopener noreferrer">DIMVA '24</a>)</div>
@@ -179,6 +161,25 @@
                         <a href="https://link.springer.com/chapter/10.1007/978-3-031-64171-8_8" target="_blank" rel="noopener noreferrer">doi</a>
                         <!-- <a href="#" target="_blank" rel="noopener noreferrer">talk</a> -->
                         <a data-filename="data/bibtex/dimva24.bib" href="javascript:void(0)" onclick="openModal(event)">cite</a>
+                    </div>
+                </div>
+                
+                <div class="content__publist__paper">
+                    <div class="content__publist__paper__title">Where Did My Variable Go? Poking Holes in Incomplete Debug Information</div>
+                    <div class="content__publist__paper__authors"><b>C. Assaiante</b>, D. C. D'Elia, G. A. Di Luna, L. Querzoni, <b>2023</b></div>
+                    <div class="content__publist__paper__text">In Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (<a href="https://www.asplos-conference.org/asplos2023/" target="_blank" rel="noopener noreferrer">ASPLOS '23</a>)</div>
+                    <div class="content__publist__paper__rank">CORE23 rank: A*</div>
+                    <div class="content__publist__paper__abstract" style="display: none;">
+                        <p>The availability of debug information for optimized executables can largely ease crucial tasks such as crash analysis. Source-level debuggers use this information to display program state in terms of source code, allowing users to reason on it even when optimizations alter program structure extensively. A few recent endeavors have proposed effective methodologies for identifying incorrect instances of debug information, which can mislead users by presenting them with an inconsistent program state.</p>
+                        <p>In this work, we identify and study a related important problem: the completeness of debug information. Unlike correctness issues for which an unoptimized executable can serve as reference, we find there is no analogous oracle to deem when the cause behind an unreported part of program state is an unavoidable effect of optimization or a compiler implementation defect. In this scenario, we argue that empirically derived conjectures on the expected availability of debug information can serve as an effective means to expose classes of these defects.</p>
+                        <p>We propose three conjectures involving variable values and study how often synthetic programs compiled with different configurations of the popular gcc and LLVM compilers deviate from them. We then discuss techniques to pinpoint the optimizations behind such violations and minimize bug reports accordingly. Our experiments revealed, among others, 24 bugs already confirmed by the developers of the gcc-gdb and clang-lldb ecosystems.</p>
+                    </div>
+                    <div class="content__publist__paper__links">
+                        <a href="javascript:void(0)" onclick="invertAbstract(event)">abstract</a>
+                        <a href="https://dl.acm.org/doi/10.1145/3575693.3575720" target="_blank" rel="noopener noreferrer">doi</a>
+                        <a href="/data/papers/asplos23-full.pdf" target="_blank" rel="noopener noreferrer">extended</a>
+                        <a href="https://www.youtube.com/watch?v=5Y43purMfig&t=1s&ab_channel=ACMSIGARCH" target="_blank" rel="noopener noreferrer">talk</a>
+                        <a data-filename="data/bibtex/asplos23.bib" href="javascript:void(0)" onclick="openModal(event)">cite</a>
                     </div>
                 </div>
 
