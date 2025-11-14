@@ -145,6 +145,24 @@
                 <h1>Publications</h1>
 
                 <!-- HERE'S AN EXAMPLE OF HOW TO CONSTRUCT HTML DIV FOR PUBLICATIONS ENTRY -->
+                 <div class="content__publist__paper">
+                    <div class="content__publist__paper__title">Towards Threading the Needle of Debuggable Optimized Binaries</div>
+                    <div class="content__publist__paper__authors"><b>C. Assaiante</b>, S. Di Biasio, S. Kumar, G. A. Di Luna, D. C. D'Elia, L. Querzoni, <b>2026</b></div>
+                    <div class="content__publist__paper__text">In Proceedings of the 24th ACM/IEEE International Symposium on Code Generation and Optimization (<a href="https://2026.cgo.org/" target="_blank" rel="noopener noreferrer">CGO '26</a>)</div>
+                    <div class="content__publist__paper__rank">CORE23 rank: A</div>
+                    <div class="content__publist__paper__abstract" style="display: none;">
+                        <p>Compiler optimizations may lead to loss of debug information, hampering developer productivity and techniques that rely on binary-to-source mappings, such as sampling-based feedback-directed optimization. While recent endeavors exposed debug information correctness and completeness bugs in compiler transformations, understanding where a complex optimizing pipeline ``loses'' debug information is an understudied problem.</p>
+                        <p>In this paper, we first rectify accuracy issues in methods for measuring the availability of debug information, and show that the synthetic programs evaluated so far lead to metric values that differ from those we observe for real-world programs. Building on this, we present DebugTuner, a framework for systematically analyzing the impact of individual compiler optimization passes on debug information, and assemble a test suite of programs for collecting more realistic metrics. Using DebugTuner and the test suite, we identify transformations in gcc and clang that cause more debug information loss, and construct modified optimization levels that improve debuggability while retaining competitive performance. We obtain levels that outperform gcc's Og for both debuggability and performance, and make recommendations for constructing an Og level for clang. Finally, we present a case study on AutoFDO where, by disabling selected passes in the profiling stage, the final optimized binary is more performant due to the improved quality of the binary-to-source mapping.</p>
+                    </div>
+                    <div class="content__publist__paper__links">
+                        <a href="javascript:void(0)" onclick="invertAbstract(event)">abstract</a>
+                        <!-- <a href="https://dl.acm.org/doi/10.1145/3575693.3575720" target="_blank" rel="noopener noreferrer">doi</a> -->
+                        <!-- <a href="/data/papers/asplos23-full.pdf" target="_blank" rel="noopener noreferrer">extended</a> -->
+                        <!-- <a href="https://www.youtube.com/watch?v=5Y43purMfig&t=1s&ab_channel=ACMSIGARCH" target="_blank" rel="noopener noreferrer">talk</a> -->
+                        <!-- <a data-filename="data/bibtex/asplos23.bib" href="javascript:void(0)" onclick="openModal(event)">cite</a> -->
+                    </div>
+                </div>
+
                 <div class="content__publist__paper">
                     <div class="content__publist__paper__title">Evading Userland API Hooking, Again: Novel Attacks and a Principled Defense Method</div>
                     <div class="content__publist__paper__authors"><b>C. Assaiante</b>, S. Nicchi, D. C. D'Elia, L. Querzoni, <b>2024</b></div>
@@ -203,6 +221,34 @@
                 
                 <div class="content__code__projects">
                     <!-- HERE'S AN EXAMPLE OF HOW TO CONSTRUCT HTML DIV FOR PROJECTS ENTRY -->
+                     <div class="content__code__projects__project">
+                        <div class="content__code__projects__project__img">
+                            <img src="/data/projects/toxotidae/logo.png" alt="...">
+                        </div>
+                        <div class="content__code__projects__project__title">
+                            DebugTuner
+                        </div>
+                        <div class="content__code__projects__project__text">
+                            A framework for <i>studying the impact of optimizations</i> on software debuggability.
+                        </div>
+                        <div class="content__code__projects__project__links">
+                            <a href="https://github.com/Sap4Sec/debugtuner" target="_blank" rel="noopener noreferrer">code</a>
+                        </div>
+                    </div>
+                     <div class="content__code__projects__project">
+                        <div class="content__code__projects__project__img">
+                            <img src="/data/projects/toxotidae/logo.png" alt="...">
+                        </div>
+                        <div class="content__code__projects__project__title">
+                            Toxotidae
+                        </div>
+                        <div class="content__code__projects__project__text">
+                            A dynamic binary instrumentation prototype <i>API monitor for malware analysis</i> based on deeper hooking.
+                        </div>
+                        <div class="content__code__projects__project__links">
+                            <a href="https://github.com/cristianassaiante/toxotidae" target="_blank" rel="noopener noreferrer">code</a>
+                        </div>
+                    </div>
                     <div class="content__code__projects__project">
                         <div class="content__code__projects__project__img">
                             <img src="/data/projects/incomplete-debuginfo/logo.png" alt="...">
@@ -215,20 +261,6 @@
                         </div>
                         <div class="content__code__projects__project__links">
                             <a href="https://github.com/cristianassaiante/incomplete-debuginfo" target="_blank" rel="noopener noreferrer">code</a>
-                        </div>
-                    </div>
-                    <div class="content__code__projects__project">
-                        <div class="content__code__projects__project__img">
-                            <img src="/data/projects/toxotidae/logo.png" alt="...">
-                        </div>
-                        <div class="content__code__projects__project__title">
-                            Toxotidae
-                        </div>
-                        <div class="content__code__projects__project__text">
-                            A dynamic binary instrumentation prototype <i>API monitor for malware analysis</i> based on deeper hooking.
-                        </div>
-                        <div class="content__code__projects__project__links">
-                            <a href="https://github.com/cristianassaiante/toxotidae" target="_blank" rel="noopener noreferrer">code</a>
                         </div>
                     </div>
                 </div>
