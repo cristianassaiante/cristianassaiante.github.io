@@ -1,7 +1,10 @@
 <section id="profile" class="content__profile" aria-labelledby="profile_name">
 <div class="content__profile__layout">
-  <figure class="content__profile__img">
-    <img src="{{ '/static/img/profile.jpg' | relative_url }}" alt="Portrait of Cristian Assaiante" width="250" height="250" fetchpriority="high" decoding="async">
+  <figure class="content__profile__img" data-profile-images="{{ site.profile_images | jsonify | escape }}">
+    <button class="profile-carousel__control profile-carousel__control--previous" type="button" aria-label="Previous profile image" data-profile-previous hidden>&lsaquo;</button>
+    <img id="profile_image" src="{{ site.profile_images.first.src | relative_url }}" alt="{{ site.profile_images.first.alt }}" width="250" height="250" fetchpriority="high" decoding="async" data-profile-image>
+    <button class="profile-carousel__control profile-carousel__control--next" type="button" aria-label="Next profile image" data-profile-next hidden>&rsaquo;</button>
+    <span class="profile-carousel__status" aria-live="polite" data-profile-status></span>
   </figure>
 
   <div class="content__profile__desc">

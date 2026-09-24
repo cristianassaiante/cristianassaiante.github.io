@@ -5,6 +5,11 @@ affiliation:
   name: Sapienza University of Rome
   legal_name: Sapienza University of Rome
   url: "https://www.uniroma1.it/"
+profile_images:
+  - src: /static/img/profile/2024.jpg
+    alt: Cristian Assaiante, 2024
+  - src: /static/img/profile/2019.jpg
+    alt: Cristian Assaiante, 2019
 social:
   email: "mailto:assaiante@diag.uniroma1.it"
   github: "https://github.com/cristianassaiante"

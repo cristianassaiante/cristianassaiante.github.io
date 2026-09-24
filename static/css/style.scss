@@ -304,6 +304,56 @@ button {
 
         &__img {
             grid-area: image;
+            position: relative;
+            width: 250px;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: var(--profile-shadow);
+
+            .profile-carousel__control {
+                position: absolute;
+                top: 0;
+                z-index: 1;
+                display: grid;
+                width: 50%;
+                height: 100%;
+                place-items: center;
+                padding: 0;
+                border: 0;
+                border-radius: 0;
+                background: transparent;
+                color: white;
+                font-size: 2rem;
+                line-height: 1;
+                opacity: 0;
+                transition: opacity var(--others-time), background-color var(--others-time);
+
+                &[hidden] {
+                    display: none;
+                }
+
+                &:focus-visible {
+                    opacity: 1;
+                    background: #00000022;
+                }
+
+                &--previous { left: 0; }
+                &--next { right: 0; }
+            }
+
+            &:hover .profile-carousel__control {
+                opacity: 1;
+                background: #00000022;
+            }
+
+            .profile-carousel__status {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+            }
         }
 
         &__img img {
@@ -313,7 +363,6 @@ button {
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            box-shadow: var(--profile-shadow);
         }
 
         &__desc {

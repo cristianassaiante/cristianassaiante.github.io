@@ -1,7 +1,34 @@
 const tab = document.getElementById('tab_bar');
 const circleIndicator = document.getElementById('circle_indicator');
 const themeToggle = document.getElementById('theme_toggle');
+const profileImageContainer = document.querySelector('[data-profile-images]');
+const profileImages = JSON.parse(profileImageContainer.dataset.profileImages);
+const profileImage = document.querySelector('[data-profile-image]');
+const profilePrevious = document.querySelector('[data-profile-previous]');
+const profileNext = document.querySelector('[data-profile-next]');
+const profileStatus = document.querySelector('[data-profile-status]');
+let profileImageIndex = 0;
 let indicatorFrame = null;
+
+function updateProfileImage() {
+    const image = profileImages[profileImageIndex];
+    profileImage.src = image.src;
+    profileImage.alt = image.alt;
+    profileStatus.textContent = `${profileImageIndex + 1} of ${profileImages.length}`;
+}
+
+function moveProfileImage(direction) {
+    profileImageIndex = (profileImageIndex + direction + profileImages.length) % profileImages.length;
+    updateProfileImage();
+}
+
+if (profileImages.length > 1) {
+    profilePrevious.hidden = false;
+    profileNext.hidden = false;
+    profilePrevious.addEventListener('click', () => moveProfileImage(-1));
+    profileNext.addEventListener('click', () => moveProfileImage(1));
+    updateProfileImage();
+}
 
 function updateThemeToggle() {
     const isLight = document.documentElement.dataset.theme === 'light';
