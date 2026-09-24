@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (() => {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.dataset.theme = savedTheme || systemTheme;
+        })();
+    </script>
     <title>{{ page.title | default: site.title }}</title>
     <meta name="description" content="{{ site.description }}">
     <link rel="stylesheet" href="{{ '/static/css/reset.css' | relative_url }}">
@@ -12,6 +19,15 @@
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
+    <button id="theme_toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="theme-toggle__sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="theme-toggle__moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
     <div class="container">
         <nav id="tab_bar" class="tab-bar" aria-label="Page sections">
             <a href="#profile" class="tab-bar__item" aria-label="Profile">
@@ -60,6 +76,7 @@
             </div>
         </div>
     </dialog>
+    <div id="copy_feedback" class="copy-feedback" role="status" aria-live="polite" hidden>Copied</div>
     <script src="{{ '/static/js/app.js' | relative_url }}"></script>
 </body>
 </html>

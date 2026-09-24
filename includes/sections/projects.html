@@ -4,11 +4,11 @@
         {% for project in site.projects %}
         <article class="content__code__projects__project">
             <div class="content__code__projects__project__img">
-                <img src="{{ project.image | relative_url }}" alt="{{ project.image_alt }}">
+                <img src="{{ project.image | relative_url }}" alt="{{ project.image_alt }}" width="240" height="240" decoding="async">
             </div>
             <h2 class="content__code__projects__project__title">{{ project.title }}</h2>
             <div class="content__code__projects__project__text">{{ project.content | markdownify }}</div>
-            <div class="content__code__projects__project__links"><a href="{{ project.repository }}">Code</a></div>
+            <div class="content__code__projects__project__links"><a href="{{ project.repository }}"{% if project.repository contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>Code</a></div>
         </article>
         {% endfor %}
     </div>
