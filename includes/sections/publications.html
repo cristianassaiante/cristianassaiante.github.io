@@ -2,7 +2,7 @@
     <h1 id="publications_heading">Publications</h1>
     <div class="content__publist__filters" role="search" aria-label="Filter publications">
         <label for="publication_search">Search publications</label>
-        <input id="publication_search" type="search" placeholder="Title, author, venue, DOI..." autocomplete="off" aria-describedby="publication_count">
+        <input id="publication_search" type="search" placeholder="Title, author, venue..." autocomplete="off" aria-describedby="publication_count">
         <label for="publication_year">Filter by year</label>
         <select id="publication_year" aria-label="Filter publications by year">
             <option value="all">All years</option>
@@ -41,4 +41,9 @@
         </div>
     </article>
     {% endfor %}
+    <div class="content__publist__pagination" aria-label="Publication pages">
+        <button class="link-button" type="button" data-publication-previous>Previous</button>
+        <span data-publication-page aria-live="polite"></span>
+        <button class="link-button" type="button" data-publication-next>Next</button>
+    </div>
 </section>

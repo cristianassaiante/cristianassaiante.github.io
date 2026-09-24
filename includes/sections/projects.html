@@ -3,7 +3,7 @@
     <div class="content__code__projects">
         {% assign projects = site.projects | sort: 'title' %}
         {% for project in projects %}
-        <article id="project-{{ forloop.index }}" class="content__code__projects__project">
+        <article id="project-{{ forloop.index }}" class="content__code__projects__project" data-project>
             <div class="content__code__projects__project__img">
                 <img src="{{ project.image | relative_url }}" alt="{{ project.image_alt }}" width="240" height="240" decoding="async">
             </div>
@@ -12,5 +12,10 @@
             <div class="content__code__projects__project__links"><a href="{{ project.repository }}"{% if project.repository contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>Code</a></div>
         </article>
         {% endfor %}
+    </div>
+    <div class="content__code__pagination" aria-label="Project pages">
+        <button class="link-button" type="button" data-project-previous>Previous</button>
+        <span data-project-page aria-live="polite"></span>
+        <button class="link-button" type="button" data-project-next>Next</button>
     </div>
 </section>

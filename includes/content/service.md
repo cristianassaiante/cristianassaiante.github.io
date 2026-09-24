@@ -1,5 +1,3 @@
-## Service
-
 2026
 : Artifact Evaluation Committee member for [ACM CCS'26](https://www.sigsac.org/ccs/CCS2026/) - ACM Conference on Computer and Communications Security <small>[CORE23 rank: A*]</small>
 

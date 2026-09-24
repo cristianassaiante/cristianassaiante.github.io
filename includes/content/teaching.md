@@ -1,5 +1,3 @@
-## Teaching
-
 2026
 : Adjunct Professor for [Sistemi di Calcolo](https://season-lab.github.io/SC/) (6 CFU module, Spring 2026), Sapienza University of Rome
 

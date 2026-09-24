@@ -101,24 +101,39 @@ const publicationCount = document.getElementById('publication_count');
 const publicationEmpty = document.getElementById('publication_empty');
 const publicationsSection = document.getElementById('publications');
 const publicationCards = Array.from(document.querySelectorAll('[data-publication]'));
+const publicationPagination = document.querySelector('.content__publist__pagination');
+const publicationPrevious = document.querySelector('[data-publication-previous]');
+const publicationNext = document.querySelector('[data-publication-next]');
+const publicationPage = document.querySelector('[data-publication-page]');
+const publicationPageSize = 3;
+let publicationCurrentPage = 0;
 
 function filterPublications() {
     const query = publicationSearch.value.trim().toLowerCase();
     const year = publicationYear.value;
-    let visibleCount = 0;
+    const matchingCards = [];
 
     publicationCards.forEach((card) => {
         const matchesQuery = !query || card.dataset.search.toLowerCase().includes(query);
         const matchesYear = year === 'all' || card.dataset.year === year;
-        const visible = matchesQuery && matchesYear;
-        card.hidden = !visible;
-        if (visible) {
-            visibleCount += 1;
+        if (matchesQuery && matchesYear) {
+            matchingCards.push(card);
         }
     });
 
-    publicationCount.textContent = `${visibleCount} publication${visibleCount === 1 ? '' : 's'}`;
-    publicationEmpty.hidden = visibleCount !== 0;
+    const pageCount = Math.ceil(matchingCards.length / publicationPageSize);
+    publicationCurrentPage = Math.min(publicationCurrentPage, Math.max(pageCount - 1, 0));
+    const pageStart = publicationCurrentPage * publicationPageSize;
+    publicationCards.forEach((card) => {
+        card.hidden = !matchingCards.includes(card) || !matchingCards.slice(pageStart, pageStart + publicationPageSize).includes(card);
+    });
+
+    publicationCount.textContent = `${matchingCards.length} publication${matchingCards.length === 1 ? '' : 's'}`;
+    publicationEmpty.hidden = matchingCards.length !== 0;
+    publicationPagination.hidden = pageCount <= 1;
+    publicationPrevious.disabled = publicationCurrentPage === 0;
+    publicationNext.disabled = publicationCurrentPage === pageCount - 1;
+    publicationPage.textContent = `Page ${publicationCurrentPage + 1} of ${Math.max(pageCount, 1)}`;
 
     const params = new URLSearchParams(window.location.search);
     if (query) {
@@ -136,11 +151,18 @@ function filterPublications() {
     history.replaceState(null, '', queryString ? `${window.location.pathname}?${queryString}${filterHash}` : window.location.pathname);
 }
 
-publicationSearch.addEventListener('input', filterPublications);
-publicationYear.addEventListener('change', filterPublications);
+publicationSearch.addEventListener('input', () => {
+    publicationCurrentPage = 0;
+    filterPublications();
+});
+publicationYear.addEventListener('change', () => {
+    publicationCurrentPage = 0;
+    filterPublications();
+});
 publicationReset.addEventListener('click', () => {
     publicationSearch.value = '';
     publicationYear.value = 'all';
+    publicationCurrentPage = 0;
     filterPublications();
     publicationSearch.focus();
 });
@@ -152,6 +174,15 @@ if (initialParams.has('q') || initialParams.has('year')) {
     publicationsSection.scrollIntoView();
 }
 
+publicationPrevious.addEventListener('click', () => {
+    publicationCurrentPage -= 1;
+    filterPublications();
+});
+publicationNext.addEventListener('click', () => {
+    publicationCurrentPage += 1;
+    filterPublications();
+});
+
 const previousNewsItems = Array.from(document.querySelectorAll('[data-previous-news]'));
 const newsPagination = document.querySelector('.content__news__pagination');
 const newsPrevious = document.querySelector('[data-news-previous]');
@@ -161,6 +192,10 @@ const newsPageSize = 5;
 let newsCurrentPage = 0;
 
 function renderNewsPage() {
+    if (!newsPagination) {
+        return;
+    }
+
     const pageCount = Math.ceil(previousNewsItems.length / newsPageSize);
     const start = newsCurrentPage * newsPageSize;
 
@@ -173,19 +208,59 @@ function renderNewsPage() {
     newsPage.textContent = `Page ${newsCurrentPage + 1} of ${pageCount}`;
 }
 
-newsPrevious.addEventListener('click', () => {
-    if (newsCurrentPage > 0) {
-        newsCurrentPage -= 1;
-        renderNewsPage();
-    }
-});
-newsNext.addEventListener('click', () => {
-    if (newsCurrentPage < Math.ceil(previousNewsItems.length / newsPageSize) - 1) {
-        newsCurrentPage += 1;
-        renderNewsPage();
-    }
-});
+if (newsPagination) {
+    newsPrevious.addEventListener('click', () => {
+        if (newsCurrentPage > 0) {
+            newsCurrentPage -= 1;
+            renderNewsPage();
+        }
+    });
+    newsNext.addEventListener('click', () => {
+        if (newsCurrentPage < Math.ceil(previousNewsItems.length / newsPageSize) - 1) {
+            newsCurrentPage += 1;
+            renderNewsPage();
+        }
+    });
+}
 renderNewsPage();
+
+const projectCards = Array.from(document.querySelectorAll('[data-project]'));
+const projectGrid = document.querySelector('.content__code__projects');
+const projectPagination = document.querySelector('.content__code__pagination');
+const projectPrevious = document.querySelector('[data-project-previous]');
+const projectNext = document.querySelector('[data-project-next]');
+const projectPage = document.querySelector('[data-project-page]');
+let projectCurrentPage = 0;
+
+function projectPageSize() {
+    return 3;
+}
+
+function renderProjectPage() {
+    const pageSize = projectPageSize();
+    const pageCount = Math.ceil(projectCards.length / pageSize);
+    projectCurrentPage = Math.min(projectCurrentPage, Math.max(pageCount - 1, 0));
+    const start = projectCurrentPage * pageSize;
+
+    projectCards.forEach((card, index) => {
+        card.hidden = index < start || index >= start + pageSize;
+    });
+    projectPagination.hidden = pageCount <= 1;
+    projectPrevious.disabled = projectCurrentPage === 0;
+    projectNext.disabled = projectCurrentPage === pageCount - 1;
+    projectPage.textContent = `Page ${projectCurrentPage + 1} of ${Math.max(pageCount, 1)}`;
+}
+
+projectPrevious.addEventListener('click', () => {
+    projectCurrentPage -= 1;
+    renderProjectPage();
+});
+projectNext.addEventListener('click', () => {
+    projectCurrentPage += 1;
+    renderProjectPage();
+});
+window.addEventListener('resize', renderProjectPage);
+renderProjectPage();
 
 const modal = document.getElementById('modal');
 const modalContent = document.getElementById('modal_content');

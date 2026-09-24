@@ -1,0 +1,26 @@
+<section id="about" class="content__bio" aria-labelledby="about_heading">
+  <div class="content__bio__heading">
+    <h1 id="about_heading">About</h1>
+    <a class="content__bio__cv" href="{{ '/data/assaiante-cv.pdf' | relative_url }}">Download CV</a>
+  </div>
+  <div class="content__bio__grid">
+    <div class="content__bio__about">
+      {% capture about %}{% include content/about.md %}{% endcapture %}
+      {{ about | markdownify }}
+    </div>
+    <details class="content__bio__card">
+      <summary>Teaching</summary>
+      <div class="content__bio__card__content">
+      {% capture teaching %}{% include content/teaching.md %}{% endcapture %}
+      {{ teaching | markdownify }}
+      </div>
+    </details>
+    <details class="content__bio__card">
+      <summary>Service</summary>
+      <div class="content__bio__card__content">
+      {% capture service %}{% include content/service.md %}{% endcapture %}
+      {{ service | markdownify }}
+      </div>
+    </details>
+  </div>
+</section>
