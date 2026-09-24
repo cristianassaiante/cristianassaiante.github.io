@@ -1,0 +1,26 @@
+<section id="publications" class="content__publist" aria-labelledby="publications_heading">
+    <h1 id="publications_heading">Publications</h1>
+    {% assign publications = site.publications | sort: 'year' | reverse %}
+    {% for publication in publications %}
+    <article class="content__publist__paper">
+        <h2 class="content__publist__paper__title">{{ publication.title }}</h2>
+        <p class="content__publist__paper__authors">{{ publication.authors }}, <strong>{{ publication.year }}</strong></p>
+        {% assign venue = publication.venue | markdownify | remove: '<p>' | remove: '</p>' %}
+        <p class="content__publist__paper__text">{{ venue }}</p>
+        <p class="content__publist__paper__rank">{{ publication.rank }}</p>
+        <div id="abstract-{{ forloop.index }}" class="content__publist__paper__abstract" hidden>
+            {{ publication.content | markdownify }}
+        </div>
+        <div class="content__publist__paper__links">
+            <button class="link-button" type="button" aria-expanded="false" aria-controls="abstract-{{ forloop.index }}" data-abstract="abstract-{{ forloop.index }}">Abstract</button>
+            {% for link in publication.links %}
+            {% if link.type == 'cite' %}
+            <button class="link-button" type="button" data-citation="{{ link.href | relative_url }}">Cite</button>
+            {% else %}
+            <a href="{{ link.href }}"{% if link.href contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </article>
+    {% endfor %}
+</section>

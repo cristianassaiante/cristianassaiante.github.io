@@ -1,0 +1,15 @@
+<section id="projects" class="content__code" aria-labelledby="projects_heading">
+    <h1 id="projects_heading">Projects</h1>
+    <div class="content__code__projects">
+        {% for project in site.projects %}
+        <article class="content__code__projects__project">
+            <div class="content__code__projects__project__img">
+                <img src="{{ project.image | relative_url }}" alt="{{ project.image_alt }}">
+            </div>
+            <h2 class="content__code__projects__project__title">{{ project.title }}</h2>
+            <div class="content__code__projects__project__text">{{ project.content | markdownify }}</div>
+            <div class="content__code__projects__project__links"><a href="{{ project.repository }}">Code</a></div>
+        </article>
+        {% endfor %}
+    </div>
+</section>

@@ -171,6 +171,8 @@ hs_err_pid*
 _site/
 .sass-cache/
 .jekyll-metadata
+.jekyll-cache/
+.jekyll-cache
 
 
 ### IntelliJ files ###

@@ -1,0 +1,13 @@
+title: Cristian Assaiante
+description: Academic personal website of Cristian Assaiante.
+url: "https://cristianassaiante.github.io"
+markdown: kramdown
+permalink: pretty
+layouts_dir: layouts
+includes_dir: includes
+collections_dir: content
+collections:
+  publications:
+    output: false
+  projects:
+    output: false
