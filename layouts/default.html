@@ -12,6 +12,36 @@
     </script>
     <title>{{ page.title | default: site.title }}</title>
     <meta name="description" content="{{ site.description }}">
+    <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | absolute_url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ page.title | default: site.title }}">
+    <meta property="og:description" content="{{ site.description }}">
+    <meta property="og:url" content="{{ page.url | replace: 'index.html', '' | absolute_url }}">
+    <meta property="og:image" content="{{ '/static/img/profile.jpg' | absolute_url }}">
+    <meta property="og:image:alt" content="Portrait of {{ site.author }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}">
+    <meta name="twitter:description" content="{{ site.description }}">
+    <meta name="twitter:image" content="{{ '/static/img/profile.jpg' | absolute_url }}">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": {{ site.author | jsonify }},
+            "url": {{ site.url | jsonify }},
+            "jobTitle": {{ site.job_title | jsonify }},
+            "affiliation": {
+                "@type": "CollegeOrUniversity",
+                "name": {{ site.affiliation.legal_name | jsonify }},
+                "url": {{ site.affiliation.url | jsonify }}
+            },
+            "sameAs": [
+                {{ site.social.github | jsonify }},
+                {{ site.social.scholar | jsonify }},
+                {{ site.social.linkedin | jsonify }}
+            ]
+        }
+    </script>
     <link rel="stylesheet" href="{{ '/static/css/reset.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/static/css/style.css' | relative_url }}">
     <link rel="icon" type="image/x-icon" href="{{ '/static/img/favicon.ico' | relative_url }}">

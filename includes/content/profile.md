@@ -5,8 +5,8 @@
 
   <div class="content__profile__desc">
     <h1 id="profile_name">Cristian Assaiante</h1>
-    <p>Post-Doctoral Researcher at DIAG</p>
-    <a href="https://www.uniroma1.it/">Sapienza, University of Rome</a>
+    <p>{{ site.job_title }}</p>
+    <a href="{{ site.affiliation.url }}">{{ site.affiliation.name }}</a>
   </div>
 
   <ul class="content__profile__social" aria-label="Social links">
