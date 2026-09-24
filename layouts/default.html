@@ -42,6 +42,70 @@
             ]
         }
     </script>
+    {% assign structured_publications = site.publications | sort: 'year' | reverse %}
+    {% for publication in structured_publications %}
+    {% assign publication_url = site.url | append: page.url | append: '#publication-' | append: forloop.index %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ScholarlyArticle",
+            "headline": {{ publication.title | jsonify }},
+            "url": {{ publication_url | jsonify }},
+            "datePublished": "{{ publication.year }}",
+            "author": [
+                {% for author in publication.authors %}
+                {
+                    "@type": "Person",
+                    "name": {{ author.full_name | jsonify }}
+                }{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            ],
+            "isPartOf": {
+                "@type": "PublicationIssue",
+                "name": {{ publication.venue_name | jsonify }},
+                "url": {{ publication.venue_url | jsonify }}
+            },
+            "publisher": {
+                "@type": "CollegeOrUniversity",
+                "name": {{ site.affiliation.legal_name | jsonify }},
+                "url": {{ site.affiliation.url | jsonify }}
+            },
+            "abstract": {{ publication.content | strip_html | strip_newlines | jsonify }},
+            "identifier": {
+                "@type": "PropertyValue",
+                "propertyID": "DOI",
+                "value": {{ publication.doi | jsonify }}
+            },
+            "sameAs": {{ publication.doi | jsonify }},
+            "encoding": {
+                "@type": "MediaObject",
+                "contentUrl": {{ publication.pdf | relative_url | absolute_url | jsonify }},
+                "encodingFormat": "application/pdf"
+            }
+        }
+    </script>
+    {% endfor %}
+    {% assign structured_projects = site.projects | sort: 'title' %}
+    {% for project in structured_projects %}
+    {% assign project_url = site.url | append: page.url | append: '#project-' | append: forloop.index %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareSourceCode",
+            "name": {{ project.title | jsonify }},
+            "dateCreated": "{{ project.year }}",
+            "description": {{ project.description | jsonify }},
+            "url": {{ project_url | jsonify }},
+            "codeRepository": {{ project.repository | jsonify }},
+            "image": {{ project.image | relative_url | absolute_url | jsonify }},
+            "author": {
+                "@type": "Person",
+                "name": {{ site.author | jsonify }},
+                "url": {{ site.url | jsonify }}
+            }
+        }
+    </script>
+    {% endfor %}
     <link rel="stylesheet" href="{{ '/static/css/reset.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/static/css/style.css' | relative_url }}">
     <link rel="icon" type="image/x-icon" href="{{ '/static/img/favicon.ico' | relative_url }}">
@@ -63,6 +127,12 @@
             <a href="#profile" class="tab-bar__item" aria-label="Profile">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+            </a>
+            <a href="#news" class="tab-bar__item" aria-label="News">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8a6 6 0 0 0 -12 0c0 7 -3 7 -3 9h18c0 -2 -3 -2 -3 -9"></path>
+                    <path d="M13.73 21a2 2 0 0 1 -3.46 0"></path>
                 </svg>
             </a>
             <a href="#biography" class="tab-bar__item" aria-label="Biography">

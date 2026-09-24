@@ -1,13 +1,14 @@
 <section id="projects" class="content__code" aria-labelledby="projects_heading">
     <h1 id="projects_heading">Projects</h1>
     <div class="content__code__projects">
-        {% for project in site.projects %}
-        <article class="content__code__projects__project">
+        {% assign projects = site.projects | sort: 'title' %}
+        {% for project in projects %}
+        <article id="project-{{ forloop.index }}" class="content__code__projects__project">
             <div class="content__code__projects__project__img">
                 <img src="{{ project.image | relative_url }}" alt="{{ project.image_alt }}" width="240" height="240" decoding="async">
             </div>
-            <h2 class="content__code__projects__project__title">{{ project.title }}</h2>
-            <div class="content__code__projects__project__text">{{ project.content | markdownify }}</div>
+            <h2 class="content__code__projects__project__title">{{ project.title }} <strong>{{ project.year }}</strong></h2>
+            <div class="content__code__projects__project__text">{{ project.description }}</div>
             <div class="content__code__projects__project__links"><a href="{{ project.repository }}"{% if project.repository contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>Code</a></div>
         </article>
         {% endfor %}

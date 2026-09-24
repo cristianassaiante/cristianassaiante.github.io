@@ -1,22 +1,40 @@
 <section id="publications" class="content__publist" aria-labelledby="publications_heading">
     <h1 id="publications_heading">Publications</h1>
+    <div class="content__publist__filters" role="search" aria-label="Filter publications">
+        <label for="publication_search">Search publications</label>
+        <input id="publication_search" type="search" placeholder="Title, author, venue, DOI..." autocomplete="off" aria-describedby="publication_count">
+        <label for="publication_year">Filter by year</label>
+        <select id="publication_year" aria-label="Filter publications by year">
+            <option value="all">All years</option>
+            {% assign publication_years = site.publications | map: 'year' | uniq | sort | reverse %}
+            {% for year in publication_years %}
+            <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select>
+        <button id="publication_reset" class="link-button" type="button">Reset filters</button>
+        <span id="publication_count" class="content__publist__filters__count" role="status" aria-live="polite"></span>
+    </div>
+    <p id="publication_empty" class="content__publist__empty" hidden>No publications match these filters.</p>
     {% assign publications = site.publications | sort: 'year' | reverse %}
     {% for publication in publications %}
-    <article class="content__publist__paper">
+    {% capture author_search %}{% for author in publication.authors %}{{ author.full_name }} {% endfor %}{% endcapture %}
+    <article id="publication-{{ forloop.index }}" class="content__publist__paper" data-publication data-year="{{ publication.year }}" data-search="{{ publication.title }} {{ author_search }} {{ publication.venue_name }} {{ publication.rank }} {{ publication.doi }}">
         <h2 class="content__publist__paper__title">{{ publication.title }}</h2>
-        <p class="content__publist__paper__authors">{{ publication.authors }}, <strong>{{ publication.year }}</strong></p>
+        <p class="content__publist__paper__authors">{% for author in publication.authors %}{{ author.display_name }}{% unless forloop.last %}, {% endunless %}{% endfor %}, <strong>{{ publication.year }}</strong></p>
         {% assign venue = publication.venue | markdownify | remove: '<p>' | remove: '</p>' %}
-        <p class="content__publist__paper__text">{{ venue }}</p>
+        <p class="content__publist__paper__text"><a href="{{ publication.venue_url }}" target="_blank" rel="noopener noreferrer">{{ venue }}</a></p>
         <p class="content__publist__paper__rank">{{ publication.rank }}</p>
         <div id="abstract-{{ forloop.index }}" class="content__publist__paper__abstract" hidden>
             {{ publication.content | markdownify }}
         </div>
         <div class="content__publist__paper__links">
             <button class="link-button" type="button" aria-expanded="false" aria-controls="abstract-{{ forloop.index }}" data-abstract="abstract-{{ forloop.index }}">Abstract</button>
+            <a href="{{ publication.pdf | relative_url }}">{{ publication.pdf_label }}</a>
+            <a href="{{ publication.doi }}" target="_blank" rel="noopener noreferrer">DOI</a>
             {% for link in publication.links %}
             {% if link.type == 'cite' %}
             <button class="link-button" type="button" data-citation="{{ link.href | relative_url }}">Cite</button>
-            {% else %}
+            {% elsif link.label != publication.pdf_label and link.label != 'DOI' %}
             <a href="{{ link.href }}"{% if link.href contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.label }}</a>
             {% endif %}
             {% endfor %}

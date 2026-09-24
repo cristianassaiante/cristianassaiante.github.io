@@ -6,6 +6,8 @@ title: Cristian Assaiante
 {% capture profile %}{% include content/profile.md %}{% endcapture %}
 {{ profile | markdownify }}
 
+{% include sections/news.html %}
+
 {% include sections/biography.html %}
 
 {% include sections/publications.html %}

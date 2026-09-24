@@ -1,14 +1,27 @@
 ---
 title: Towards Threading the Needle of Debuggable Optimized Binaries
 year: 2026
-authors: C. Assaiante, S. Di Biasio, S. Kumar, G. A. Di Luna, D. C. D'Elia, L. Querzoni
-venue: "In Proceedings of the 24th ACM/IEEE International Symposium on Code Generation and Optimization ([CGO '26](https://2026.cgo.org/))"
-rank: "CORE23 rank: A"
+venue_name: CGO '26
+venue_url: https://2026.cgo.org/
+doi: https://ieeexplore.ieee.org/document/11395216
+pdf: /data/papers/cgo26.pdf
+pdf_label: Preprint
+authors:
+  - full_name: Cristian Assaiante
+    display_name: C. Assaiante
+  - full_name: Simone Di Biasio
+    display_name: S. Di Biasio
+  - full_name: Snehasish Kumar
+    display_name: S. Kumar
+  - full_name: Giuseppe Antonio Di Luna
+    display_name: G. A. Di Luna
+  - full_name: Daniele Cono D'Elia
+    display_name: D. C. D'Elia
+  - full_name: Leonardo Querzoni
+    display_name: L. Querzoni
+venue: "In Proceedings of the 24th ACM/IEEE International Symposium on Code Generation and Optimization (CGO '26)"
+rank: "CORE26 rank: A"
 links:
-  - label: Preprint
-    href: /data/papers/cgo26.pdf
-  - label: DOI
-    href: https://ieeexplore.ieee.org/document/11395216
   - label: Artifact
     href: https://zenodo.org/records/17865056
   - type: cite

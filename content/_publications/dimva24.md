@@ -1,14 +1,23 @@
 ---
 title: "Evading Userland API Hooking, Again: Novel Attacks and a Principled Defense Method"
 year: 2024
-authors: C. Assaiante, S. Nicchi, D. C. D'Elia, L. Querzoni
-venue: "In Proceedings of the 21st Conference on Detection of Intrusions and Malware & Vulnerability Assessment ([DIMVA '24](https://dimva.org/dimva2024))"
-rank: "CORE23 rank: C"
+venue_name: DIMVA '24
+venue_url: https://dimva.org/dimva2024
+doi: https://link.springer.com/chapter/10.1007/978-3-031-64171-8_8
+pdf: /data/papers/dimva24.pdf
+pdf_label: Preprint
+authors:
+  - full_name: Cristian Assaiante
+    display_name: C. Assaiante
+  - full_name: Simone Nicchi
+    display_name: S. Nicchi
+  - full_name: Daniele Cono D'Elia
+    display_name: D. C. D'Elia
+  - full_name: Leonardo Querzoni
+    display_name: L. Querzoni
+venue: "In Proceedings of the 21st Conference on Detection of Intrusions and Malware & Vulnerability Assessment (DIMVA '24)"
+rank: "CORE26 rank: B"
 links:
-  - label: Preprint
-    href: /data/papers/dimva24.pdf
-  - label: DOI
-    href: https://link.springer.com/chapter/10.1007/978-3-031-64171-8_8
   - type: cite
     href: /data/bibtex/dimva24.bib
 ---

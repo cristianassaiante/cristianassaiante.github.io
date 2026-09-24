@@ -1,0 +1,43 @@
+<section id="news" class="content__news" aria-labelledby="news_heading">
+    <h1 id="news_heading">News</h1>
+    <div class="content__news__list">
+        {% assign news = site.news | sort: 'date' | reverse %}
+        {% assign latest_news = news | first %}
+        {% if latest_news %}
+        <article class="content__news__item">
+            <time datetime="{{ latest_news.date | date: '%Y-%m-%d' }}">{{ latest_news.date | date: '%B %-d, %Y' }}</time>
+            <div>
+                <h2>{{ latest_news.title }}</h2>
+                <p>{{ latest_news.text }}</p>
+            </div>
+            {% if latest_news.link %}
+            <a href="{{ latest_news.link }}" target="_blank" rel="noopener noreferrer">Read more</a>
+            {% endif %}
+        </article>
+        {% endif %}
+    </div>
+    {% if news.size > 1 %}
+    <details class="content__news__archive">
+        <summary>Previous news</summary>
+        <div class="content__news__list">
+            {% for item in news offset: 1 %}
+            <article class="content__news__item" data-previous-news>
+                <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%B %-d, %Y' }}</time>
+                <div>
+                    <h2>{{ item.title }}</h2>
+                    <p>{{ item.text }}</p>
+                </div>
+                {% if item.link %}
+                <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">Read more</a>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        <div class="content__news__pagination" aria-label="Previous news pages">
+            <button class="link-button" type="button" data-news-previous>Previous</button>
+            <span data-news-page aria-live="polite"></span>
+            <button class="link-button" type="button" data-news-next>Next</button>
+        </div>
+    </details>
+    {% endif %}
+</section>

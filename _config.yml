@@ -18,6 +18,8 @@ layouts_dir: layouts
 includes_dir: includes
 collections_dir: content
 collections:
+  news:
+    output: false
   publications:
     output: false
   projects:

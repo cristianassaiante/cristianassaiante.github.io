@@ -1,14 +1,23 @@
 ---
 title: Where Did My Variable Go? Poking Holes in Incomplete Debug Information
 year: 2023
-authors: C. Assaiante, D. C. D'Elia, G. A. Di Luna, L. Querzoni
-venue: "In Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems ([ASPLOS '23](https://www.asplos-conference.org/asplos2023/))"
-rank: "CORE23 rank: A*"
+venue_name: ASPLOS '23
+venue_url: https://www.asplos-conference.org/asplos2023/
+doi: https://dl.acm.org/doi/10.1145/3575693.3575720
+pdf: /data/papers/asplos23-full.pdf
+pdf_label: Extended
+authors:
+  - full_name: Cristian Assaiante
+    display_name: C. Assaiante
+  - full_name: Daniele Cono D'Elia
+    display_name: D. C. D'Elia
+  - full_name: Giuseppe Antonio Di Luna
+    display_name: G. A. Di Luna
+  - full_name: Leonardo Querzoni
+    display_name: L. Querzoni
+venue: "In Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS '23)"
+rank: "CORE26 rank: A*"
 links:
-  - label: Extended
-    href: /data/papers/asplos23-full.pdf
-  - label: DOI
-    href: https://dl.acm.org/doi/10.1145/3575693.3575720
   - label: Talk
     href: https://www.youtube.com/watch?v=5Y43purMfig&t=1s&ab_channel=ACMSIGARCH
   - type: cite
