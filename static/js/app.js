@@ -96,6 +96,7 @@ document.querySelectorAll('[data-abstract]').forEach((button) => {
 
 const publicationSearch = document.getElementById('publication_search');
 const publicationYear = document.getElementById('publication_year');
+const publicationKeyword = document.getElementById('publication_keyword');
 const publicationReset = document.getElementById('publication_reset');
 const publicationCount = document.getElementById('publication_count');
 const publicationEmpty = document.getElementById('publication_empty');
@@ -111,12 +112,14 @@ let publicationCurrentPage = 0;
 function filterPublications() {
     const query = publicationSearch.value.trim().toLowerCase();
     const year = publicationYear.value;
+    const keyword = publicationKeyword.value.toLowerCase();
     const matchingCards = [];
 
     publicationCards.forEach((card) => {
         const matchesQuery = !query || card.dataset.search.toLowerCase().includes(query);
         const matchesYear = year === 'all' || card.dataset.year === year;
-        if (matchesQuery && matchesYear) {
+        const matchesKeyword = keyword === 'all' || card.dataset.search.toLowerCase().includes(keyword);
+        if (matchesQuery && matchesYear && matchesKeyword) {
             matchingCards.push(card);
         }
     });
@@ -146,9 +149,20 @@ function filterPublications() {
     } else {
         params.delete('year');
     }
+    if (keyword !== 'all') {
+        params.set('keyword', keyword);
+    } else {
+        params.delete('keyword');
+    }
     const queryString = params.toString();
-    const filterHash = queryString ? '#publications' : '';
-    history.replaceState(null, '', queryString ? `${window.location.pathname}?${queryString}${filterHash}` : window.location.pathname);
+    if (publicationCurrentPage > 0) {
+        params.set('pub_page', String(publicationCurrentPage + 1));
+    } else {
+        params.delete('pub_page');
+    }
+    const publicationQueryString = params.toString();
+    const filterHash = publicationQueryString ? '#publications' : '';
+    history.replaceState(null, '', publicationQueryString ? `${window.location.pathname}?${publicationQueryString}${filterHash}` : window.location.pathname);
 }
 
 publicationSearch.addEventListener('input', () => {
@@ -159,9 +173,14 @@ publicationYear.addEventListener('change', () => {
     publicationCurrentPage = 0;
     filterPublications();
 });
+publicationKeyword.addEventListener('change', () => {
+    publicationCurrentPage = 0;
+    filterPublications();
+});
 publicationReset.addEventListener('click', () => {
     publicationSearch.value = '';
     publicationYear.value = 'all';
+    publicationKeyword.value = 'all';
     publicationCurrentPage = 0;
     filterPublications();
     publicationSearch.focus();
@@ -169,8 +188,10 @@ publicationReset.addEventListener('click', () => {
 const initialParams = new URLSearchParams(window.location.search);
 publicationSearch.value = initialParams.get('q') || '';
 publicationYear.value = initialParams.get('year') || 'all';
+publicationKeyword.value = initialParams.get('keyword') || 'all';
+publicationCurrentPage = Math.max(Number(initialParams.get('pub_page') || 1) - 1, 0);
 filterPublications();
-if (initialParams.has('q') || initialParams.has('year')) {
+if (initialParams.has('q') || initialParams.has('year') || initialParams.has('keyword')) {
     publicationsSection.scrollIntoView();
 }
 
@@ -188,6 +209,7 @@ const newsPagination = document.querySelector('.content__news__pagination');
 const newsPrevious = document.querySelector('[data-news-previous]');
 const newsNext = document.querySelector('[data-news-next]');
 const newsPage = document.querySelector('[data-news-page]');
+const newsArchive = document.querySelector('.content__news__archive');
 const newsPageSize = 5;
 let newsCurrentPage = 0;
 
@@ -206,6 +228,13 @@ function renderNewsPage() {
     newsPrevious.disabled = newsCurrentPage === 0;
     newsNext.disabled = newsCurrentPage === pageCount - 1;
     newsPage.textContent = `Page ${newsCurrentPage + 1} of ${pageCount}`;
+    const params = new URLSearchParams(window.location.search);
+    if (newsCurrentPage > 0) {
+        params.set('news_page', String(newsCurrentPage + 1));
+    } else {
+        params.delete('news_page');
+    }
+    history.replaceState(null, '', `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}${window.location.hash}`);
 }
 
 if (newsPagination) {
@@ -249,6 +278,13 @@ function renderProjectPage() {
     projectPrevious.disabled = projectCurrentPage === 0;
     projectNext.disabled = projectCurrentPage === pageCount - 1;
     projectPage.textContent = `Page ${projectCurrentPage + 1} of ${Math.max(pageCount, 1)}`;
+    const params = new URLSearchParams(window.location.search);
+    if (projectCurrentPage > 0) {
+        params.set('project_page', String(projectCurrentPage + 1));
+    } else {
+        params.delete('project_page');
+    }
+    history.replaceState(null, '', `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}${window.location.hash}`);
 }
 
 projectPrevious.addEventListener('click', () => {
@@ -260,6 +296,11 @@ projectNext.addEventListener('click', () => {
     renderProjectPage();
 });
 window.addEventListener('resize', renderProjectPage);
+projectCurrentPage = Math.max(Number(initialParams.get('project_page') || 1) - 1, 0);
+newsCurrentPage = Math.max(Number(initialParams.get('news_page') || 1) - 1, 0);
+if (newsArchive && newsCurrentPage > 0) {
+    newsArchive.open = true;
+}
 renderProjectPage();
 
 const modal = document.getElementById('modal');

@@ -2,8 +2,9 @@
     <h1 id="publications_heading">Publications</h1>
     <div class="content__publist__filters" role="search" aria-label="Filter publications">
         <label for="publication_search">Search publications</label>
-        <input id="publication_search" type="search" placeholder="Title, author, venue..." autocomplete="off" aria-describedby="publication_count">
+        <input id="publication_search" type="search" placeholder="Title, author, venue, keyword..." autocomplete="off" aria-describedby="publication_count">
         <label for="publication_year">Filter by year</label>
+        <div class="content__publist__filters__select">
         <select id="publication_year" aria-label="Filter publications by year">
             <option value="all">All years</option>
             {% assign publication_years = site.publications | map: 'year' | uniq | sort | reverse %}
@@ -11,6 +12,25 @@
             <option value="{{ year }}">{{ year }}</option>
             {% endfor %}
         </select>
+        </div>
+        <label for="publication_keyword">Filter by keyword</label>
+        <div class="content__publist__filters__select">
+        <select id="publication_keyword" aria-label="Filter publications by keyword">
+            <option value="all">All keywords</option>
+            {% assign publication_keywords = '' | split: '' %}
+            {% for item in site.publications %}
+            {% for keyword in item.keywords %}
+            {% unless publication_keywords contains keyword %}
+            {% assign publication_keywords = publication_keywords | push: keyword %}
+            {% endunless %}
+            {% endfor %}
+            {% endfor %}
+            {% assign publication_keywords = publication_keywords | sort %}
+            {% for keyword in publication_keywords %}
+            <option value="{{ keyword | escape }}">{{ keyword }}</option>
+            {% endfor %}
+        </select>
+        </div>
         <button id="publication_reset" class="link-button" type="button">Reset filters</button>
         <span id="publication_count" class="content__publist__filters__count" role="status" aria-live="polite"></span>
     </div>
@@ -18,9 +38,10 @@
     {% assign publications = site.publications | sort: 'year' | reverse %}
     {% for publication in publications %}
     {% capture author_search %}{% for author in publication.authors %}{{ author.full_name }} {% endfor %}{% endcapture %}
-    <article id="publication-{{ forloop.index }}" class="content__publist__paper" data-publication data-year="{{ publication.year }}" data-search="{{ publication.title }} {{ author_search }} {{ publication.venue_name }} {{ publication.rank }} {{ publication.doi }}">
+    {% capture keyword_search %}{% for keyword in publication.keywords %}{{ keyword }} {% endfor %}{% endcapture %}
+    <article id="publication-{{ forloop.index }}" class="content__publist__paper" data-publication data-year="{{ publication.year }}" data-search="{{ publication.title }} {{ author_search }} {{ publication.venue_name }} {{ publication.rank }} {{ publication.doi }} {{ keyword_search }}">
         <h2 class="content__publist__paper__title">{{ publication.title }}</h2>
-        <p class="content__publist__paper__authors">{% for author in publication.authors %}{{ author.display_name }}{% unless forloop.last %}, {% endunless %}{% endfor %}, <strong>{{ publication.year }}</strong></p>
+        <p class="content__publist__paper__authors">{% for author in publication.authors %}{{ author.display_name }}{% unless forloop.last %}, {% endunless %}{% endfor %}. <strong>{{ publication.year }}</strong></p>
         {% assign venue = publication.venue | markdownify | remove: '<p>' | remove: '</p>' %}
         <p class="content__publist__paper__text"><a href="{{ publication.venue_url }}" target="_blank" rel="noopener noreferrer">{{ venue }}</a></p>
         <p class="content__publist__paper__rank">{{ publication.rank }}</p>

@@ -71,6 +71,7 @@
                 "url": {{ site.affiliation.url | jsonify }}
             },
             "abstract": {{ publication.content | strip_html | strip_newlines | jsonify }},
+            "keywords": {{ publication.keywords | jsonify }},
             "identifier": {
                 "@type": "PropertyValue",
                 "propertyID": "DOI",
@@ -95,6 +96,8 @@
             "name": {{ project.title | jsonify }},
             "dateCreated": "{{ project.year }}",
             "description": {{ project.description | jsonify }},
+            "applicationCategory": {{ project.project_type | jsonify }},
+            "keywords": {{ project.technologies | join: ', ' | jsonify }},
             "url": {{ project_url | jsonify }},
             "codeRepository": {{ project.repository | jsonify }},
             "image": {{ project.image | relative_url | absolute_url | jsonify }},

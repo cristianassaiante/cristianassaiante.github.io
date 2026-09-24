@@ -1,6 +1,11 @@
 ---
 title: Towards Threading the Needle of Debuggable Optimized Binaries
 year: 2026
+keywords:
+  - debug information
+  - compiler optimizations
+  - debugging
+  - profile-guided optimization
 venue_name: CGO '26
 venue_url: https://2026.cgo.org/
 doi: https://ieeexplore.ieee.org/document/11395216

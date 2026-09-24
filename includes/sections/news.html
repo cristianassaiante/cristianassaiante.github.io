@@ -7,8 +7,9 @@
         <article class="content__news__item">
             <time datetime="{{ latest_news.date | date: '%Y-%m-%d' }}">{{ latest_news.date | date: '%B %-d, %Y' }}</time>
             <div>
+                <span class="content__news__category">{{ latest_news.category }}</span>
                 <h2>{{ latest_news.title }}</h2>
-                <p>{{ latest_news.text }}</p>
+                <div class="content__news__text">{{ latest_news.text | markdownify }}</div>
             </div>
             {% if latest_news.link %}
             <a href="{{ latest_news.link }}" target="_blank" rel="noopener noreferrer">Read more</a>
@@ -24,8 +25,9 @@
             <article class="content__news__item" data-previous-news>
                 <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%B %-d, %Y' }}</time>
                 <div>
+                    <span class="content__news__category">{{ item.category }}</span>
                     <h2>{{ item.title }}</h2>
-                    <p>{{ item.text }}</p>
+                    <div class="content__news__text">{{ item.text | markdownify }}</div>
                 </div>
                 {% if item.link %}
                 <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">Read more</a>

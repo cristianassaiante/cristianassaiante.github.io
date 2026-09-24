@@ -1,6 +1,11 @@
 ---
 title: "Evading Userland API Hooking, Again: Novel Attacks and a Principled Defense Method"
 year: 2024
+keywords:
+  - api hooking
+  - malware analysis
+  - program analysis
+  - binary instrumentation
 venue_name: DIMVA '24
 venue_url: https://dimva.org/dimva2024
 doi: https://link.springer.com/chapter/10.1007/978-3-031-64171-8_8

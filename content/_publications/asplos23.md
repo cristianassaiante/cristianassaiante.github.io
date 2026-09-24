@@ -1,6 +1,11 @@
 ---
 title: Where Did My Variable Go? Poking Holes in Incomplete Debug Information
 year: 2023
+keywords:
+  - debug information
+  - compiler optimizations
+  - debugging
+  - completeness
 venue_name: ASPLOS '23
 venue_url: https://www.asplos-conference.org/asplos2023/
 doi: https://dl.acm.org/doi/10.1145/3575693.3575720
