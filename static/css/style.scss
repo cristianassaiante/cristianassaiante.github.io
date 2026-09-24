@@ -22,6 +22,7 @@
     --news-border: #a8794d;
     --news-shadow: #000000aa;
     --content-card-bg: #102f38;
+    --profile-shadow: 0 20px 40px -20px #00000091;
     --radius-card: 1rem;
     --radius-control: 0.5rem;
     --shadow-card: 0 20px 40px -20px #00000091;
@@ -46,6 +47,7 @@
     --news-border: #a86f38;
     --news-shadow: #17434b52;
     --content-card-bg: #f7fbfc;
+    --profile-shadow: 0 20px 40px -14px #17434b99;
     --shadow-card: 0 20px 40px -20px #17434b38;
 }
 
@@ -282,12 +284,27 @@ button {
 
     &__profile {
         background-color: var(--theme-1);
-        padding: 2rem;
+        padding: 4rem 2rem 3rem;
         display: flex;
-        align-items: center;
         justify-content: center;
-        flex-direction: column;
-        gap: 2rem;
+
+        &__layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            grid-template-areas:
+                "image desc"
+                "image social"
+                "news news";
+            column-gap: clamp(2rem, 6vw, 6rem);
+            row-gap: 1.5rem;
+            align-items: center;
+            width: 85%;
+            max-width: 900px;
+        }
+
+        &__img {
+            grid-area: image;
+        }
 
         &__img img {
             margin: auto;
@@ -296,11 +313,12 @@ button {
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            box-shadow: var(--shadow-card);
+            box-shadow: var(--profile-shadow);
         }
 
         &__desc {
-            text-align: center;
+            grid-area: desc;
+            text-align: left;
             display: flex;
             flex-direction: column;
             gap: 25px;
@@ -317,8 +335,9 @@ button {
         }
 
         &__social {
+            grid-area: social;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             flex-wrap: wrap;
 
@@ -394,6 +413,15 @@ button {
                     box-shadow: 0 4px 30px rgba(222, 127, 120, 0.6);
                 }
             }
+        }
+
+        &__layout > .content__news {
+            grid-area: news;
+            width: 75vw;
+            margin: 1rem 0 0;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 
@@ -1003,6 +1031,39 @@ button {
 }
 
 @media screen and (max-width: 768px) {
+    .content__profile {
+        padding: 2rem 1rem;
+
+        &__layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "image"
+                "desc"
+                "social"
+                "news";
+            gap: 2rem;
+            width: 100%;
+            max-width: none;
+        }
+
+        &__desc {
+            text-align: center;
+        }
+
+        &__social {
+            justify-content: center;
+        }
+
+        &__layout > .content__news {
+            width: calc(100% - 2rem);
+            margin: 0;
+            left: 0;
+            transform: none;
+            padding: 3rem 1.25rem;
+        }
+    }
+
     .tab-bar {
         top: calc(1rem + var(--nav-height) + 1rem);
         left: 1rem;

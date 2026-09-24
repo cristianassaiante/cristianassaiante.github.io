@@ -1,4 +1,5 @@
 <section id="profile" class="content__profile" aria-labelledby="profile_name">
+<div class="content__profile__layout">
   <figure class="content__profile__img">
     <img src="{{ '/static/img/profile.jpg' | relative_url }}" alt="Portrait of Cristian Assaiante" width="250" height="250" fetchpriority="high" decoding="async">
   </figure>
@@ -24,4 +25,5 @@
     </a></li>
   </ul>
   {% include sections/news.html %}
+</div>
 </section>
