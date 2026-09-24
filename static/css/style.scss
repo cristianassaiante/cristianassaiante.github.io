@@ -23,8 +23,10 @@
     --news-shadow: #000000aa;
     --content-card-bg: #102f38;
     --profile-shadow: 0 20px 40px -20px #00000091;
-    --control-hover-bg: #123d48;
-    --control-bg: #123d48;
+    --control-hover-bg: #1c5b68;
+    --control-bg: #024959;
+    --control-border: #4bb3c5;
+    --control-hover-border: #8bd3dd;
     --radius-card: 1rem;
     --radius-control: 0.5rem;
     --shadow-card: 0 20px 40px -20px #00000091;
@@ -51,7 +53,9 @@
     --content-card-bg: #f7fbfc;
     --profile-shadow: 0 20px 40px -14px #17434b99;
     --control-hover-bg: var(--surface);
-    --control-bg: #d8edf0;
+    --control-bg: #b8dfe3;
+    --control-border: #087f8c;
+    --control-hover-border: #4bb3c5;
     --shadow-card: 0 20px 40px -20px #17434b38;
 }
 
@@ -666,16 +670,27 @@ button {
             background: var(--content-card-bg);
             box-shadow: var(--shadow-card);
             line-height: 1.4rem;
+            transition: border-color var(--others-time), box-shadow var(--others-time);
+
+            &:hover {
+                border-color: var(--control-hover-border);
+                box-shadow: var(--shadow-card);
+            }
 
             summary {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 list-style: none;
+                padding: 0;
+                border: 0;
+                background: transparent;
                 cursor: pointer;
                 font-size: 1.5rem;
                 font-weight: 500;
                 letter-spacing: 0.2rem;
+                box-shadow: none;
+                opacity: 1;
 
                 &::-webkit-details-marker {
                     display: none;
@@ -686,6 +701,12 @@ button {
                     font-size: 1rem;
                     letter-spacing: 0;
                     transition: transform var(--others-time);
+                }
+
+                &:hover,
+                &:focus-visible {
+                    background: transparent;
+                    border-color: transparent;
                 }
             }
 
@@ -800,7 +821,7 @@ button {
                 select:focus-visible {
                     background: var(--theme-0);
                     color: white;
-                    border-color: var(--surface-border);
+                    border-color: var(--control-hover-border);
                     transform: none;
                 }
             }
@@ -815,6 +836,19 @@ button {
 
             input {
                 flex: 1 1 18rem;
+                background: var(--surface);
+                border-color: var(--control-border);
+                box-shadow: var(--shadow-card);
+                opacity: 0.8;
+                transition: background-color var(--others-time), border-color var(--others-time), opacity var(--others-time);
+
+                &:hover,
+                &:focus-visible {
+                    background: var(--surface);
+                    border-color: var(--control-hover-border);
+                    opacity: 1;
+                    outline: none;
+                }
 
                 &::placeholder {
                     color: var(--text);
@@ -1153,7 +1187,7 @@ button {
     justify-content: center;
     min-height: 2.25rem;
     padding: 0.35rem 0.6rem;
-    border: 0.15rem solid var(--theme-0);
+    border: 0.15rem solid var(--control-border);
     border-radius: var(--radius-control);
     box-shadow: var(--shadow-card);
     background: var(--control-bg);
@@ -1173,7 +1207,7 @@ button {
     min-height: 2.25rem;
     margin: 0;
     padding: 0.35rem 0.6rem;
-    border: 0.15rem solid var(--theme-0);
+    border: 0.15rem solid var(--control-border);
     box-shadow: var(--shadow-card);
 }
 
@@ -1191,7 +1225,7 @@ button {
 .content__publist__modal__content__footer__download:hover {
     opacity: 1;
     background: var(--control-hover-bg);
-    border-color: var(--surface-border);
+    border-color: var(--control-hover-border);
     text-decoration: none;
     transform: none;
 }
@@ -1209,7 +1243,7 @@ button {
 .content__publist__modal__content__footer__copy:active,
 .content__publist__modal__content__footer__download:active {
     background: var(--control-hover-bg);
-    border-color: var(--surface-border);
+    border-color: var(--control-hover-border);
     transform: none;
 }
 
@@ -1220,7 +1254,7 @@ button {
     min-height: 2.25rem;
     margin: 0;
     padding: 0.35rem 0.6rem;
-    border: 0.15rem solid var(--theme-0);
+    border: 0.15rem solid var(--control-border);
     border-radius: var(--radius-control);
     background: var(--control-bg);
     color: var(--text);
