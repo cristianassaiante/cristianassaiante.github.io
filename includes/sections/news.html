@@ -1,5 +1,5 @@
 <section id="news" class="content__news" aria-labelledby="news_heading">
-    <h1 id="news_heading">News</h1>
+    <h2 id="news_heading">News</h2>
     <div class="content__news__list">
         {% assign news = site.news | sort: 'date' | reverse %}
         {% assign latest_news = news | first %}
@@ -8,7 +8,7 @@
             <time datetime="{{ latest_news.date | date: '%Y-%m-%d' }}">{{ latest_news.date | date: '%B %-d, %Y' }}</time>
             <div>
                 <span class="content__news__category">{{ latest_news.category }}</span>
-                <h2>{{ latest_news.title }}</h2>
+                <h3>{{ latest_news.title }}</h3>
                 <div class="content__news__text">{{ latest_news.text | markdownify }}</div>
             </div>
             {% if latest_news.link %}
@@ -26,7 +26,7 @@
                 <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%B %-d, %Y' }}</time>
                 <div>
                     <span class="content__news__category">{{ item.category }}</span>
-                    <h2>{{ item.title }}</h2>
+                    <h3>{{ item.title }}</h3>
                     <div class="content__news__text">{{ item.text | markdownify }}</div>
                 </div>
                 {% if item.link %}

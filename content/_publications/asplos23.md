@@ -9,6 +9,8 @@ keywords:
 venue_name: ASPLOS '23
 venue_url: https://www.asplos-conference.org/asplos2023/
 doi: https://dl.acm.org/doi/10.1145/3575693.3575720
+doi_id: 10.1145/3575693.3575720
+publisher: Association for Computing Machinery
 pdf: /data/papers/asplos23-full.pdf
 pdf_label: Extended
 authors:

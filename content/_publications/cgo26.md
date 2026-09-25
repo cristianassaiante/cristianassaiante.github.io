@@ -9,6 +9,7 @@ keywords:
 venue_name: CGO '26
 venue_url: https://2026.cgo.org/
 doi: https://ieeexplore.ieee.org/document/11395216
+doi_id: 10.1109/CGO68049.2026.11395216
 pdf: /data/papers/cgo26.pdf
 pdf_label: Preprint
 authors:

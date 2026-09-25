@@ -9,6 +9,8 @@ keywords:
 venue_name: DIMVA '24
 venue_url: https://dimva.org/dimva2024
 doi: https://link.springer.com/chapter/10.1007/978-3-031-64171-8_8
+doi_id: 10.1007/978-3-031-64171-8_8
+publisher: Springer Nature Switzerland
 pdf: /data/papers/dimva24.pdf
 pdf_label: Preprint
 authors:

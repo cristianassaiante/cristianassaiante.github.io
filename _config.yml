@@ -15,7 +15,7 @@ social:
   github: "https://github.com/cristianassaiante"
   scholar: "https://scholar.google.it/citations?user=Hjz3sBoAAAAJ&hl=it&oi=ao"
   linkedin: "https://www.linkedin.com/in/cristian-assaiante-233032174/"
-description: Academic personal website of Cristian Assaiante.
+description: Cristian Assaiante researches compilers, debug information quality, profile-guided optimization, and systems security. Explore publications and research software.
 url: "https://cristianassaiante.github.io"
 markdown: kramdown
 permalink: pretty

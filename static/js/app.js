@@ -48,20 +48,25 @@ updateThemeToggle();
 function updateTabIndicator() {
     const sections = Array.from(document.querySelectorAll('.content > section'));
     const marker = window.innerHeight * 0.35;
-    const activeIndex = sections.findIndex((section) => {
+    let activeIndex = sections.findIndex((section) => {
         const rect = section.getBoundingClientRect();
         return rect.top <= marker && rect.bottom > marker;
     });
 
-    if (activeIndex < 0) {
-        return;
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        activeIndex = sections.length - 1;
     }
+    if (activeIndex < 0) activeIndex = 0;
 
-    const activeTab = tab.children[activeIndex];
+    const links = Array.from(tab.querySelectorAll('.tab-bar__item'));
+    const activeTab = links.find((link) => link.hash === `#${sections[activeIndex].id}`);
+    links.forEach((link) => {
+        if (link === activeTab) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+    });
     circleIndicator.style.left = `${activeTab.offsetLeft}px`;
+    circleIndicator.style.width = `${activeTab.offsetWidth}px`;
     circleIndicator.style.marginLeft = '0';
-    circleIndicator.style.backgroundColor = getComputedStyle(document.documentElement)
-        .getPropertyValue(`--theme-${activeIndex + 1}`);
 }
 
 function scheduleTabIndicatorUpdate() {
@@ -77,6 +82,7 @@ function scheduleTabIndicatorUpdate() {
 
 document.addEventListener('scroll', scheduleTabIndicatorUpdate, { passive: true });
 window.addEventListener('resize', scheduleTabIndicatorUpdate);
+document.fonts.ready.then(scheduleTabIndicatorUpdate);
 updateTabIndicator();
 
 document.querySelectorAll('[data-abstract]').forEach((button) => {
@@ -88,10 +94,6 @@ document.querySelectorAll('[data-abstract]').forEach((button) => {
         button.setAttribute('aria-expanded', String(!expanded));
     });
 
-    abstract.addEventListener('click', () => {
-        abstract.hidden = true;
-        button.setAttribute('aria-expanded', 'false');
-    });
 });
 
 const publicationSearch = document.getElementById('publication_search');
@@ -107,9 +109,21 @@ const publicationPrevious = document.querySelector('[data-publication-previous]'
 const publicationNext = document.querySelector('[data-publication-next]');
 const publicationPage = document.querySelector('[data-publication-page]');
 const publicationPageSize = 3;
-let publicationCurrentPage = 0;
+const initialParams = new URLSearchParams(window.location.search);
 
-function filterPublications() {
+function initialPage(name) {
+    const page = Number(initialParams.get(name));
+    return Number.isSafeInteger(page) && page > 0 ? page - 1 : 0;
+}
+
+function replaceQuery(params, hash = window.location.hash) {
+    const query = params.toString();
+    history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}${hash}`);
+}
+
+let publicationCurrentPage = initialPage('pub_page');
+
+function filterPublications(navigate = true) {
     const query = publicationSearch.value.trim().toLowerCase();
     const year = publicationYear.value;
     const keyword = publicationKeyword.value.toLowerCase();
@@ -154,15 +168,12 @@ function filterPublications() {
     } else {
         params.delete('keyword');
     }
-    const queryString = params.toString();
     if (publicationCurrentPage > 0) {
         params.set('pub_page', String(publicationCurrentPage + 1));
     } else {
         params.delete('pub_page');
     }
-    const publicationQueryString = params.toString();
-    const filterHash = publicationQueryString ? '#publications' : '';
-    history.replaceState(null, '', publicationQueryString ? `${window.location.pathname}?${publicationQueryString}${filterHash}` : window.location.pathname);
+    replaceQuery(params, navigate ? '#publications' : window.location.hash);
 }
 
 publicationSearch.addEventListener('input', () => {
@@ -185,13 +196,13 @@ publicationReset.addEventListener('click', () => {
     filterPublications();
     publicationSearch.focus();
 });
-const initialParams = new URLSearchParams(window.location.search);
 publicationSearch.value = initialParams.get('q') || '';
 publicationYear.value = initialParams.get('year') || 'all';
 publicationKeyword.value = initialParams.get('keyword') || 'all';
-publicationCurrentPage = Math.max(Number(initialParams.get('pub_page') || 1) - 1, 0);
-filterPublications();
-if (initialParams.has('q') || initialParams.has('year') || initialParams.has('keyword')) {
+if (!publicationYear.value) publicationYear.value = 'all';
+if (!publicationKeyword.value) publicationKeyword.value = 'all';
+filterPublications(false);
+if (!window.location.hash && ['q', 'year', 'keyword', 'pub_page'].some((name) => initialParams.has(name))) {
     publicationsSection.scrollIntoView();
 }
 
@@ -211,7 +222,7 @@ const newsNext = document.querySelector('[data-news-next]');
 const newsPage = document.querySelector('[data-news-page]');
 const newsArchive = document.querySelector('.content__news__archive');
 const newsPageSize = 5;
-let newsCurrentPage = 0;
+let newsCurrentPage = initialPage('news_page');
 
 function renderNewsPage() {
     if (!newsPagination) {
@@ -219,6 +230,8 @@ function renderNewsPage() {
     }
 
     const pageCount = Math.ceil(previousNewsItems.length / newsPageSize);
+    newsCurrentPage = Math.min(newsCurrentPage, Math.max(pageCount - 1, 0));
+    if (newsCurrentPage > 0) newsArchive.open = true;
     const start = newsCurrentPage * newsPageSize;
 
     previousNewsItems.forEach((item, index) => {
@@ -259,7 +272,7 @@ const projectPagination = document.querySelector('.content__code__pagination');
 const projectPrevious = document.querySelector('[data-project-previous]');
 const projectNext = document.querySelector('[data-project-next]');
 const projectPage = document.querySelector('[data-project-page]');
-let projectCurrentPage = 0;
+let projectCurrentPage = initialPage('project_page');
 
 function projectPageSize() {
     return 3;
@@ -289,19 +302,45 @@ function renderProjectPage() {
 
 projectPrevious.addEventListener('click', () => {
     projectCurrentPage -= 1;
+    replaceQuery(new URLSearchParams(window.location.search), '#projects');
     renderProjectPage();
 });
 projectNext.addEventListener('click', () => {
     projectCurrentPage += 1;
+    replaceQuery(new URLSearchParams(window.location.search), '#projects');
     renderProjectPage();
 });
 window.addEventListener('resize', renderProjectPage);
-projectCurrentPage = Math.max(Number(initialParams.get('project_page') || 1) - 1, 0);
-newsCurrentPage = Math.max(Number(initialParams.get('news_page') || 1) - 1, 0);
-if (newsArchive && newsCurrentPage > 0) {
-    newsArchive.open = true;
-}
 renderProjectPage();
+
+function revealLinkedCard() {
+    let id;
+    try {
+        id = decodeURIComponent(window.location.hash.slice(1));
+    } catch {
+        return;
+    }
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const publicationIndex = publicationCards.indexOf(target);
+    const projectIndex = projectCards.indexOf(target);
+    if (publicationIndex !== -1) {
+        // A direct link takes precedence over filters that would hide the paper.
+        publicationSearch.value = '';
+        publicationYear.value = 'all';
+        publicationKeyword.value = 'all';
+        publicationCurrentPage = Math.floor(publicationIndex / publicationPageSize);
+        filterPublications(false);
+    } else if (projectIndex !== -1) {
+        projectCurrentPage = Math.floor(projectIndex / projectPageSize());
+        renderProjectPage();
+    }
+    target.scrollIntoView();
+}
+
+window.addEventListener('hashchange', revealLinkedCard);
+revealLinkedCard();
 
 const modal = document.getElementById('modal');
 const modalContent = document.getElementById('modal_content');
@@ -375,17 +414,26 @@ function closeCitationModal() {
         return Promise.resolve();
     }
 
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        modal.classList.remove('is-closing');
+        modal.close();
+        return Promise.resolve();
+    }
+
     return new Promise((resolve) => {
         const finishClose = (event) => {
-            if (event.target !== modal) {
+            if (event && event.target !== modal) {
                 return;
             }
+            clearTimeout(fallback);
+            modal.removeEventListener('animationend', finishClose);
             modal.classList.remove('is-closing');
             modal.close();
             resolve();
         };
 
-        modal.addEventListener('animationend', finishClose, { once: true });
+        const fallback = setTimeout(finishClose, 250);
+        modal.addEventListener('animationend', finishClose);
         modal.classList.add('is-closing');
     });
 }

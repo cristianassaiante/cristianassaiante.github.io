@@ -10,19 +10,19 @@
             document.documentElement.dataset.theme = savedTheme || systemTheme;
         })();
     </script>
-    <title>{{ page.title | default: site.title }}</title>
-    <meta name="description" content="{{ site.description }}">
+    <title>{{ page.title | default: site.title | escape }}</title>
+    <meta name="description" content="{{ page.description | default: site.description | escape }}">
     <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | absolute_url }}">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ page.title | default: site.title }}">
-    <meta property="og:description" content="{{ site.description }}">
+    <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+    <meta property="og:description" content="{{ page.description | default: site.description | escape }}">
     <meta property="og:url" content="{{ page.url | replace: 'index.html', '' | absolute_url }}">
-    <meta property="og:image" content="{{ '/static/img/profile.jpg' | absolute_url }}">
+    <meta property="og:image" content="{{ site.profile_images.first.src | absolute_url }}">
     <meta property="og:image:alt" content="Portrait of {{ site.author }}">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{ page.title | default: site.title }}">
-    <meta name="twitter:description" content="{{ site.description }}">
-    <meta name="twitter:image" content="{{ '/static/img/profile.jpg' | absolute_url }}">
+    <meta name="twitter:title" content="{{ page.title | default: site.title | escape }}">
+    <meta name="twitter:description" content="{{ page.description | default: site.description | escape }}">
+    <meta name="twitter:image" content="{{ site.profile_images.first.src | absolute_url }}">
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -30,6 +30,8 @@
             "name": {{ site.author | jsonify }},
             "url": {{ site.url | jsonify }},
             "jobTitle": {{ site.job_title | jsonify }},
+            "description": {{ site.description | jsonify }},
+            "image": {{ site.profile_images.first.src | absolute_url | jsonify }},
             "affiliation": {
                 "@type": "CollegeOrUniversity",
                 "name": {{ site.affiliation.legal_name | jsonify }},
@@ -44,7 +46,7 @@
     </script>
     {% assign structured_publications = site.publications | sort: 'year' | reverse %}
     {% for publication in structured_publications %}
-    {% assign publication_url = site.url | append: page.url | append: '#publication-' | append: forloop.index %}
+    {% assign publication_url = site.url | append: page.url | append: '#publication-' | append: publication.slug %}
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -61,23 +63,24 @@
                 {% endfor %}
             ],
             "isPartOf": {
-                "@type": "PublicationIssue",
+                "@type": "CreativeWork",
                 "name": {{ publication.venue_name | jsonify }},
                 "url": {{ publication.venue_url | jsonify }}
             },
+            {% if publication.publisher %}
             "publisher": {
-                "@type": "CollegeOrUniversity",
-                "name": {{ site.affiliation.legal_name | jsonify }},
-                "url": {{ site.affiliation.url | jsonify }}
+                "@type": "Organization",
+                "name": {{ publication.publisher | jsonify }}
             },
-            "abstract": {{ publication.content | strip_html | strip_newlines | jsonify }},
+            {% endif %}
+            "abstract": {{ publication.content | markdownify | strip_html | normalize_whitespace | jsonify }},
             "keywords": {{ publication.keywords | jsonify }},
             "identifier": {
                 "@type": "PropertyValue",
                 "propertyID": "DOI",
-                "value": {{ publication.doi | jsonify }}
+                "value": {{ publication.doi_id | jsonify }}
             },
-            "sameAs": {{ publication.doi | jsonify }},
+            "sameAs": {{ publication.doi_id | prepend: "https://doi.org/" | jsonify }},
             "encoding": {
                 "@type": "MediaObject",
                 "contentUrl": {{ publication.pdf | relative_url | absolute_url | jsonify }},
@@ -88,7 +91,7 @@
     {% endfor %}
     {% assign structured_projects = site.projects | sort: 'title' %}
     {% for project in structured_projects %}
-    {% assign project_url = site.url | append: page.url | append: '#project-' | append: forloop.index %}
+    {% assign project_url = site.url | append: page.url | append: '#project-' | append: project.slug %}
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -122,6 +125,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="4"></circle>
                 </svg>
+                <span class="tab-bar__label">Profile</span>
             </a>
             <a href="#about" class="tab-bar__item" aria-label="About">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -129,6 +133,7 @@
                     <circle cx="12" cy="10" r="3"></circle>
                     <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
                 </svg>
+                <span class="tab-bar__label">About</span>
             </a>
             <a href="#publications" class="tab-bar__item" aria-label="Publications">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -136,6 +141,7 @@
                     <path d="M16 7h4"></path>
                     <path d="M18 19h-13a2 2 0 1 1 0 -4h4a2 2 0 1 0 0 -4h-3"></path>
                 </svg>
+                <span class="tab-bar__label">Publications</span>
             </a>
             <a href="#projects" class="tab-bar__item" aria-label="Projects">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -143,7 +149,9 @@
                     <path d="M6 5l-2 2l2 2"></path>
                     <path d="M10 9l2 -2l-2 -2"></path>
                 </svg>
+                <span class="tab-bar__label">Projects</span>
             </a>
+            <span class="tab-bar__separator" aria-hidden="true"></span>
             <button id="theme_toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
                 <svg class="theme-toggle__sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="4"></circle>

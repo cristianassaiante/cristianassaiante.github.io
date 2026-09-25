@@ -1,19 +1,31 @@
 <section id="projects" class="content__code" aria-labelledby="projects_heading">
-    <h1 id="projects_heading">Projects</h1>
+    <h2 id="projects_heading">Projects</h2>
     <div class="content__code__projects">
         {% assign projects = site.projects | sort: 'title' %}
         {% for project in projects %}
-        <article id="project-{{ forloop.index }}" class="content__code__projects__project" data-project>
+        <article id="project-{{ project.slug }}" class="content__code__projects__project" data-project>
             <div class="content__code__projects__project__img">
                 <img src="{{ project.image | relative_url }}" alt="{{ project.image_alt }}" width="240" height="240" decoding="async">
             </div>
-            <h2 class="content__code__projects__project__title">{{ project.title }}</h2>
+            <h3 class="content__code__projects__project__title"><a class="content-permalink" href="#project-{{ project.slug }}">{{ project.title }}</a></h3>
             <p class="content__code__projects__project__year">{{ project.year }}</p>
             <div class="content__code__projects__project__text">{{ project.description }}</div>
             <div class="content__code__projects__project__meta">
                 {% for technology in project.technologies %}<span>{{ technology }}</span>{% endfor %}
             </div>
-            <div class="content__code__projects__project__links"><a href="{{ project.repository }}"{% if project.repository contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}>Code</a></div>
+            <div class="content__code__projects__project__links">
+                <a href="{{ project.repository }}" target="_blank" rel="noopener noreferrer">Code</a>
+                {% assign related_paper = site.publications | where: 'slug', project.publication | first %}
+                {% if related_paper %}<a href="#publication-{{ related_paper.slug }}" aria-label="Paper: {{ related_paper.title | escape }}">Paper</a>{% endif %}
+                {% if project.documentation %}<a href="{{ project.documentation }}" target="_blank" rel="noopener noreferrer">Docs</a>{% endif %}
+            </div>
+            {% if project.usage_example %}
+            <details class="project-example">
+                <summary>Usage example</summary>
+                <p>{{ project.usage_example }}</p>
+                {% if project.example_url %}<a href="{{ project.example_url }}" target="_blank" rel="noopener noreferrer">View instructions</a>{% endif %}
+            </details>
+            {% endif %}
         </article>
         {% endfor %}
     </div>
