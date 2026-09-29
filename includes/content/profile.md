@@ -24,7 +24,7 @@
     <h1 id="profile_name">Cristian Assaiante</h1>
     <p>{{ site.job_title }}</p>
     <a href="{{ site.affiliation.url }}">{{ site.affiliation.name }}</a>
-    <p class="content__profile__research">Compilers, debugging information, and systems security.</p>
+    <p class="content__profile__research">{{ site.research_interests }}</p>
     <div class="content__profile__actions">
       <a href="{{ '/data/assaiante-cv.pdf' | relative_url }}">Download CV</a>
       <a href="{{ site.social.email }}">Contact me</a>
