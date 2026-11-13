@@ -1,5 +1,6 @@
 2026
 : Shadow Program Committee [member]({{ '/data/certificates/icse27.pdf' | relative_url }}) for [ICSE'27](https://conf.researchr.org/home/icse-2027) -  IEEE/ACM International Conference on Software Engineering <small>[CORE21 rank: A*]</small>
+: Artifact Evaluation Committee member for [NDSS'27](https://www.ndss-symposium.org/ndss2027/) - Network and Distributed System Security Symposium 2027 <small>[CORE23 rank: A*]</small>
 : Artifact Evaluation Committee member for [ACM CCS'26](https://www.sigsac.org/ccs/CCS2026/) - ACM Conference on Computer and Communications Security <small>[CORE23 rank: A*]</small>
 
 2025
